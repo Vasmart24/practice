@@ -2,23 +2,23 @@
 
 const prompts = require('prompts');
 
-const bloodCoins = 135;
+const bloodCoins = 500;
 
 const heavyMarine = {
   class: 'heavy marine',
   type: 'armor',
   hp: 160,
   dmg: 25,
-  armor: `70%`,
+  armor: '70%',
   cost: 135,
 };
 
 const LightMarine = {
   class: 'light marine',
-  type: 'light',
+  type: 'range',
   hp: 170,
   dmg: 30,
-  armor: `30%`,
+  armor: '30%',
   cost: 75,
 };
 
@@ -27,7 +27,7 @@ const penetrators = {
   type: 'piercing',
   hp: 110,
   dmg: 45,
-  armor: `20%`,
+  armor: '20%',
   cost: 115,
 };
 
@@ -36,9 +36,9 @@ const psionics = {
   type: 'psi',
   hp: 10,
   dmg: 19,
-  armor: `0%`,
+  armor: '0%',
   cost: 240,
-}
+};
 
 const z = (async () => {
   const heavyMarineCost = heavyMarine.cost;
