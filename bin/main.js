@@ -1,5 +1,5 @@
-import game from '../bin/game.js';
-import configs from '../bin/configs.js';
+import game from '../lib/game.js';
+import configs from '../lib/configs.js';
 import prompts from 'prompts';
 
 const makePrompt = async () => {
@@ -8,5 +8,3 @@ const makePrompt = async () => {
   value(game);
   makePrompt();
 };
-
-makePrompt();
