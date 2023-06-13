@@ -1,14 +1,10 @@
 import prompts from 'prompts';
-import game from '../lib/game.js';
 import configs from '../lib/configs.js';
 
-
-
-const makePrompt = async () => {
+const makePrompt = async (config = configs.menu) => {
   console.clear();
-  if (game.data.isEnded) return;
-  const { func } = await prompts(configs.menu);
-  func(game);
+  const res = await prompts(config);
+  console.log(res);
   makePrompt();
 };
 
