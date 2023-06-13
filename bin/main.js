@@ -9,3 +9,4 @@ const makePrompt = async (config = configs.menu) => {
 };
 
 makePrompt();
+
