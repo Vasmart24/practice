@@ -29,3 +29,4 @@ bloodcoins = '1-5';
 generateLoot = (...params) => {
   
 }
+
