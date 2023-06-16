@@ -1,6 +1,6 @@
 import prompts from 'prompts';
-import configs from '../lib/configs.js';
-import game from '../lib/game.js';
+import configs from '../data/configs.js';
+import game from '../data/game.js';
 
 const makePrompt = async (config) => {
   console.log(game)

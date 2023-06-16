@@ -1,6 +1,6 @@
-import { save, load } from '../lib/save.js';
-import game from '../lib/game.js';
-import functions from '../lib/functions.js';
+import { save, load } from '../src/save.js';
+import game from './game.js';
+import actions from '../src/actions.js';
 
 const configs = {
   menu: {
@@ -18,10 +18,10 @@ const configs = {
     }
   },
   endGame: {
-    action: functions.endGame,
+    action: actions.endGame,
   },
   startGame: {
-    action: functions.showMessage,
+    action: actions.showMessage,
     prompt: {
       type: 'select',
       name: 'next',

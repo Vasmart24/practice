@@ -1,6 +1,6 @@
-import game from './game.js';
+import game from '../data/game.js';
 
-const functions = {
+const actions = {
   createPlayer: function(name) {
     game.player.name = name;
   },
@@ -12,4 +12,4 @@ const functions = {
   }
 };
 
-export default functions;
+export default actions;
