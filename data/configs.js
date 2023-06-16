@@ -1,6 +1,6 @@
-import { save, load } from './save.js';
-import game from './game.js';
-import functions from './functions.js';
+import { save, load } from '../lib/save.js';
+import game from '../lib/game.js';
+import functions from '../lib/functions.js';
 
 const configs = {
   menu: {
@@ -10,7 +10,7 @@ const configs = {
       name: 'next',
       message: 'Меню',
       choices: [
-        { title: 'Новая игра', value: 'createPlayer' },
+        { title: 'Новая игра', value: 'startGame' },
         { title: 'Продолжить', value: 'saves' },
         { title: 'Сохранить', value: 'save' },
         { title: 'Выйти', value: 'endGame' },
@@ -20,21 +20,12 @@ const configs = {
   endGame: {
     action: functions.endGame,
   },
-  createPlayer: {
-    action: functions.createPlayer,
-    nextPrompt: 'startGame',
-    prompt: {
-      type: 'text',
-      name: 'value',
-      message: 'Введите имя игрока',
-    }
-  },
   startGame: {
     action: functions.showMessage,
     prompt: {
       type: 'select',
       name: 'next',
-      message: 'Выберите направление',
+      message: `Выберите направление ${game.player.name}`,
       choices: [
         { title: 'Пойти направо', value: '' },
         { title: 'Пойти налево', value: '' }
