@@ -1,6 +1,11 @@
 import { save, load } from '../src/save.js';
-import game from './game.js';
+import { game } from './game.js';
 import actions from '../src/actions.js';
+import { player } from './Player.js';
+import cities from './Cities.js';
+
+const [buildings] = [cities[player.getPlayerLocation()].buildings];
+console.log(buildings)
 
 const configs = {
   menu: {
@@ -15,22 +20,19 @@ const configs = {
         { title: 'Сохранить', value: 'save' },
         { title: 'Выйти', value: 'endGame' },
       ],
-    }
+    },
   },
   endGame: {
     action: actions.endGame,
   },
   startGame: {
-    action: actions.showMessage,
+    action: actions.showMessage(),
     prompt: {
       type: 'select',
       name: 'next',
-      message: `Выберите направление ${game.player.name}`,
-      choices: [
-        { title: 'Пойти направо', value: '' },
-        { title: 'Пойти налево', value: '' }
-      ],
-    }
+      message: `Вы находитесь в городе ${player.getPlayerLocation()}, выберите дальнейшее действие: `,
+      choices: buildings,
+    },
   },
   saves: {
     action: 'showSaves',
@@ -44,8 +46,8 @@ const configs = {
         { title: 'Сохранить', value: 'save' },
         { title: 'Выйти', value: 'endGame' },
       ],
-    }
-  }
+    },
+  },
 };
 
 export default configs;

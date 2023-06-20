@@ -1,5 +1,5 @@
+import prompts from 'prompts';
 
-import prompts from "prompts";
 const heavyMarine = {
   class: 'heavy marine',
   type: 'armor',

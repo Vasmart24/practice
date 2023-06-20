@@ -1,15 +1,13 @@
-import game from '../data/game.js';
-
 const actions = {
-  createPlayer: function(name) {
+  createPlayer(name) {
     game.player.name = name;
   },
-  endGame: function() {
+  endGame() {
     game.isEnded = true;
   },
-  showMessage: function() {
-    console.log('Описание мира:');
-  }
+  showMessage() {
+    console.log('Описание мира:\n');
+  },
 };
 
 export default actions;

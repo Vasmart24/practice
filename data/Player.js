@@ -1,17 +1,16 @@
 export const player = {
   name: 'player',
-  currentLocation: 'Самсан',
+  currentLocation: 'Самсана',
 
-
-  getPlayerLocation: function() {
+  getPlayerLocation() {
     return this.currentLocation;
   },
 
-  setPlayerLocation: function(location) {
+  setPlayerLocation(location) {
     this.currentLocation = location;
   },
 
-  getPlayerName: function() {
+  getPlayerName() {
     return this.name;
-  }
+  },
 };

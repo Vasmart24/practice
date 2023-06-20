@@ -6,9 +6,9 @@ const firstCityCreeps = {
     armor: '5%',
     loot: [
       { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: ''},
-      { title: 'fang', description: 'Can be sold.', value: ''},
-      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: ''}
+      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { title: 'fang', description: 'Can be sold.', value: '' },
+      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: '' },
     ],
   },
   hydralisk: {
@@ -17,10 +17,10 @@ const firstCityCreeps = {
     dmg: '30-35',
     armor: '10%',
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: ''},
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: ''},
-      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: ''},
-      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: ''}
+      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
+      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
+      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
     ],
   },
 
@@ -34,16 +34,15 @@ const firstCityCreeps = {
     loot: [
       { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' }
+      { title: 'bones', description: 'Can be sold.', value: '' },
     ],
   },
-
 
 };
 
 //   'Есть четыре типа кристаллов: базовые, продвинутые, промежуточные и королевские.\n';
 // 'Эти кристаллы можно использовать для улучшения своих войск, их можно обменять на биомассу, а также продать по хорошей цене.'
-// для нерусов 
+// для нерусов
 // 'There are four types of crystals: basic, advanced, intermediate and royal.\n';
 // 'These crystals can be used to upgrade your troops, they can be exchanged for biomass, and they can also be sold for a good price.';
 
@@ -54,10 +53,10 @@ const secondCityCreeps = {
     damage: '30-40',
     armor: '60%',
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: ''},
+      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
       { title: 'bones', description: 'Can be sold.', value: '' },
-      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: ''},
+      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
     ],
   },
 
@@ -67,7 +66,7 @@ const secondCityCreeps = {
     damage: '25-35',
     armor: '20%',
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: ''},
+      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
       { title: 'neuroplasm', description: 'Can be processed into large amound of biomass', value: '' },
     ],
@@ -79,10 +78,10 @@ const secondCityCreeps = {
     damage: '25-30',
     armor: '30%',
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: ''},
+      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: ''},
-      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: ''},
+      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
+      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: '' },
     ],
   },
 
@@ -92,9 +91,9 @@ const secondCityCreeps = {
     damage: '20-25',
     armor: '40%',
     loot: [
-      { title: 'intermediate shard', description: 'Used to increase the rank of troops.', value: ''},
+      { title: 'intermediate shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' }
+      { title: 'bones', description: 'Can be sold.', value: '' },
     ],
   },
 };
@@ -108,7 +107,7 @@ const thirdCityCreeps = {
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
-      { title: 'BLANK', description: 'BLANK', value: '' }
+      { title: 'BLANK', description: 'BLANK', value: '' },
     ],
   },
   creep2: {
@@ -119,7 +118,7 @@ const thirdCityCreeps = {
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
-      { title: 'BLANK', description: 'BLANK', value: '' }
+      { title: 'BLANK', description: 'BLANK', value: '' },
     ],
   },
   creep3: {
@@ -130,7 +129,7 @@ const thirdCityCreeps = {
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
-      { title: 'BLANK', description: 'BLANK', value: '' }
+      { title: 'BLANK', description: 'BLANK', value: '' },
     ],
   },
   creep4: {
@@ -141,7 +140,7 @@ const thirdCityCreeps = {
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
-      { title: 'BLANK', description: 'BLANK', value: '' }
+      { title: 'BLANK', description: 'BLANK', value: '' },
     ],
   },
 };
