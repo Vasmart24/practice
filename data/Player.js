@@ -1,9 +1,17 @@
-const player = {
+export const player = {
   name: 'player',
-  currentLocation: 'Samsan',
-  changeLocation(place) {
-    this.currentLocation = place;
-  },
-};
+  currentLocation: 'Самсан',
 
-export default player;
+
+  getPlayerLocation: function() {
+    return this.currentLocation;
+  },
+
+  setPlayerLocation: function(location) {
+    this.currentLocation = location;
+  },
+
+  getPlayerName: function() {
+    return this.name;
+  }
+};

@@ -1,9 +1,6 @@
-const game = {
-  isEnded: false,
-  player: {
-    name: null,
-  },
-  playerCurrentLocation: '',
-};
 
-export default game;
+export const game = (promptName, choice) => {
+  console.log();
+  const action = makeprompt[promptName](choice);
+  game(action)
+}
