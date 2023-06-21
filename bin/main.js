@@ -24,7 +24,6 @@ const makePrompt = async (config) => {
 const makePrompt = async (config) => {
   const prompt = new Prompt(...await config.getPromptData());
 
-
   const { value } = await prompts(prompt);
   console.log(value);
   makePrompt(configs[value]);

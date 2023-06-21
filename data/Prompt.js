@@ -9,7 +9,7 @@ class Prompt {
     this.message = message;
     this.choices = [];
     for (let i = 0; i < titles.length; i += 1) {
-      this.choices.push({ 
+      this.choices.push({
         title: titles[i],
         value: values[i],
         description: description[i] ? description[i] : null,
