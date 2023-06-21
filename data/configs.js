@@ -24,9 +24,11 @@ const configs = {
   },
   endGame: {
     action: actions.endGame,
+    actionArgs: [null],
   },
   startGame: {
-    action: actions.showMessage(),
+    action: actions.showText,
+    actionArgs: ['Какой-то Текст, используемый как аргумент функции, определенной выше', 'Еще один текст'],
     prompt: {
       type: 'select',
       name: 'next',

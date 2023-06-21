@@ -49,9 +49,3 @@ export const load = async (saveName) => {
     throw new Error(e);
   }
 };
-
-save({
-  player: {
-    name: 'Jopa',
-  },
-});

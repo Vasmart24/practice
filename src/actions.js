@@ -1,3 +1,5 @@
+import game from '../data/gameData.js';
+
 const actions = {
   createPlayer(name) {
     game.player.name = name;
@@ -5,8 +7,9 @@ const actions = {
   endGame() {
     game.isEnded = true;
   },
-  showMessage() {
-    console.log('Описание мира:\n');
+  showText(text, text2) {
+    console.log(text);
+    console.log(text2);
   },
 };
 
