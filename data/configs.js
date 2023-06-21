@@ -1,24 +1,26 @@
-import { save, load } from '../src/save.js';
+import { save, load, getSaves } from '../src/save.js';
 import actions from '../src/actions.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 
+
 const [buildings] = [cities[player.getPlayerLocation()].buildings];
-console.log(buildings)
+
 
 const configs = {
   menu: {
-    action: null,
-    prompt: {
-      type: 'select',
-      name: 'next',
-      message: 'Меню',
-      choices: [
-        { title: 'Новая игра', value: 'startGame' },
-        { title: 'Продолжить', value: 'saves' },
-        { title: 'Сохранить', value: 'save' },
-        { title: 'Выйти', value: 'endGame' },
-      ],
+    getPromptData: () => [
+      'Меню', ['Новая игра', 'Продолжить', 'Сохранить', 'Выйти'],
+      ['startGame', 'savesList', 'save', 'endGame']
+    ],
+  },
+  savesList: {
+    getPromptData: async () => {
+      const saves = await getSaves();
+      return [
+        'Выберите сохранение', saves,
+        ['startGame', 'startGame', 'startGame', 'startGame']
+      ];
     },
   },
   endGame: {
@@ -26,7 +28,7 @@ const configs = {
     actionArgs: [null],
   },
   startGame: {
-    action: actions.showText,
+    action: null,
     actionArgs: ['Какой-то Текст, используемый как аргумент функции, определенной выше', 'Еще один текст'],
     prompt: {
       type: 'select',
@@ -34,21 +36,7 @@ const configs = {
       message: `Вы находитесь в городе ${player.getPlayerLocation()}, выберите дальнейшее действие: `,
       choices: buildings,
     },
-  },
-  saves: {
-    action: 'showSaves',
-    prompt: {
-      type: 'select',
-      name: 'next',
-      message: 'Выберите сохранение:',
-      choices: [
-        { title: 'Новая игра', value: 'startGame' },
-        { title: 'Продолжить', value: 'saves' },
-        { title: 'Сохранить', value: 'save' },
-        { title: 'Выйти', value: 'endGame' },
-      ],
-    },
-  },
+  }
 };
 
 export default configs;

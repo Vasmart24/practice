@@ -1,9 +1,4 @@
-import game from '../data/game.js';
-
 const actions = {
-  createPlayer(name) {
-    game.player.name = name;
-  },
   endGame() {
     game.isEnded = true;
   },
