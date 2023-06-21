@@ -1,24 +1,11 @@
 const cities = {
   Самсана: {
     buildings: [
-      {
-        title: 'Таверна', description: 'в таверне можно отдохнуть и прикупить вещей для похода',
-        value: [
-        {
-            title: 'купить', description: 'список доступных ресурсов', value: 'buyTavernItems',
-            title: 'продать', description: 'список ресурсов для продажи', value: 'sell',
-            title: 'койка-место', description: 'восстановить выносливость и сохранить прогресс', value: 'save',
-            title: 'Вернутся в город', description: 'возвращение в город Самсана', value: '',
-        }]
-      },
-      {
-        title: 'Рынок', description: 'на рынке можно купить аммуницию', 
-        value: [
-        {
-            title: 'купить', description: 'купить снаряжение для героя', value: 'buy(marketItems)',
-            title: 'продать', description: 'продать снаряжение героя', value: 'sell(getPlayerAmmunition)',
-        }],
-      }
+      { title: 'Таверна', description: 'отдохнуть и прикупить вещей для похода', value: 'tavernActions' },
+      { title: 'Рынок', description: 'купить аммуницию', value: 'marketActions' },
+      { title: 'Центр Инженерии', description: 'найм войск и их улучшение', value: 'engineerActions' },
+      { title: 'Госпиталь', description: 'лечение войск', value: 'hospitalActions' },
+      { title: 'Ратуша', description: 'главное здание города', value: 'townhallActions' },
     ]
   },
     // 'Казармы': ['Нанять войско', 'Вернуться в город'],

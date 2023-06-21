@@ -1,5 +1,13 @@
-const game = {
+import { load } from '../src/save.js';
+
+let game = {
   isEnded: false,
+  property1: 'value1',
+  property2: {
+    propert3: 'value3'
+  }
 };
 
-export default game;
+export const gameInit = (saveName) => {
+  game = load(saveName);
+};
