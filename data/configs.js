@@ -6,6 +6,14 @@ import cities from './Cities.js';
 const [buildings] = [cities[player.getPlayerLocation()].buildings];
 console.log(buildings)
 
+// следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
+const tavernItems = [
+  { title: 'томатный секс', description: 'бери, чего думать-то? Цена - 10 денег', value: 'buy' },
+  { title: 'виноградный секс', description: 'как томатный только слаще... Цена - 20 денег', value: 'buy' },
+  { title: 'обычный секс', description: 'повыщает моральный дух войска(ебут-то тебя). Цена - (-60) денег', value: 'buy' }
+];
+
+
 const configs = {
   menu: {
     action: null,
@@ -47,6 +55,39 @@ const configs = {
         { title: 'Сохранить', value: 'save' },
         { title: 'Выйти', value: 'endGame' },
       ],
+    },
+  },
+  tavernActions: {
+    action: null,
+    prompt: {
+      type: 'select',
+      name: 'next',
+      message: 'выберите следующее действие:',
+      choices: [
+        { title: 'купить', description: 'список доступных ресурсов', value: 'buyTavernItems' },
+        { title: 'продать', description: 'список ресурсов для продажи', value: 'sell' },
+        { title: 'койка-место', description: 'восстановить выносливость и сохранить прогресс', value: 'save' },
+        { title: 'Вернутся в город', description: 'возвращение в город Самсана', value: 'returnToCity' },
+      ],
+    },
+  },
+  marketActions: {
+    prompt: {
+      type: 'select',
+      name: 'next',
+      message: 'выберите следующее действие:',
+      choices: [
+        { title: 'купить', description: 'купить снаряжение для героя', value: 'buyMarketItems' },
+        { title: 'продать', description: 'продать снаряжение героя', value: 'sellItems', }
+      ],
+    },
+  },
+  buyTavernItems: {
+    prompt: {
+      type: 'select',
+      name: 'next',
+      message: 'выберите следующее действие:',
+      choices: tavernItems,
     },
   },
 };
