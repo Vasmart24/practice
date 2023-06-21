@@ -100,6 +100,7 @@ const configs = {
       choices: tavernItems,
     },
   },
+}
 };
 
 export default configs;
