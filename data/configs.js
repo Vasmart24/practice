@@ -1,5 +1,4 @@
 import { save, load } from '../src/save.js';
-import { game } from './game.js';
 import actions from '../src/actions.js';
 import { player } from './Player.js';
 import cities from './Cities.js';

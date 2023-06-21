@@ -1,4 +1,4 @@
-import game from '../data/gameData.js';
+import game from '../data/game.js';
 
 const actions = {
   createPlayer(name) {

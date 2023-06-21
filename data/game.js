@@ -1,5 +1,5 @@
-export const game = (promptName, choice) => {
-  console.log();
-  const action = makeprompt[promptName](choice);
-  game(action);
+const game = {
+  isEnded: false,
 };
+
+export default game;
