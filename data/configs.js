@@ -100,7 +100,10 @@ const configs = {
       choices: tavernItems,
     },
   },
+<<<<<<< HEAD
 }
+=======
+>>>>>>> refs/remotes/origin/main
 };
 
 export default configs;
