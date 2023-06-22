@@ -1,13 +1,13 @@
 import prompts from 'prompts';
-import configs from '../data/configs.js';
-import Prompt from '../data/Prompt.js';
+import { configs, game } from '../data/configs.js';
 
 const makePrompt = async (config) => {
-  const prompt = new Prompt(...await config.getPromptData());
+  if (game.isEnded) return;
+  const prompt = await config.getPrompt();
 
   const { value } = await prompts(prompt);
-  // console.log(value);
-  makePrompt(configs[value]);
+  const promptLink = await config.handleUserInput(value);
+  makePrompt(configs[promptLink]);
 };
 
 makePrompt(configs.menu);

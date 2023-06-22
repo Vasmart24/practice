@@ -38,8 +38,7 @@ export const save = async (game, name) => {
 };
 
 export const load = async (saveName) => {
-  const filename = `/${saveName}.json`;
-  console.log(path + filename);
+  const filename = `/${saveName}`;
   try {
     const rawdata = await fsp.readFile(path + filename);
     const data = JSON.parse(rawdata);

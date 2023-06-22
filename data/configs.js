@@ -1,7 +1,7 @@
 import { save, load, getSaves } from '../src/save.js';
-import actions from '../src/actions.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
+import Prompt from './Prompt.js';
 
 const city = cities[player.getPlayerLocation()];
 
@@ -34,51 +34,54 @@ const engineeringValues = city.buildingsActions.engineering.values;
 // const blacksmithValues = city.buildingsActions.blacksmith.values;
 // следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
 
+export let game = {
+  isEnded: false,
+  name: null
+};
 
-const configs = {
+export const configs = {
   menu: {
-    getPromptData: () => [
-      'Меню', ['Новая игра', 'Продолжить', 'Сохранить', 'Выйти'],
-      ['startGame', 'savesList', 'save', 'endGame'],
-    ],
+    getPrompt: () => {
+      return new Prompt(
+      '☰', ['Новая игра', 'Продолжить', 'Сохранить', 'Выйти'],
+      ['startGame', 'savesList', 'saveGame', 'endGame'])
+    },
+    handleUserInput: (value) => {
+      if (value === 'endGame') game.isEnded = true;
+      return value;
+    },
   },
   savesList: {
-    getPromptData: async () => {
+    getPrompt: async () => {
       const saves = await getSaves();
-      return [
-        'Выберите сохранение', saves,
-        ['startGame', 'startGame', 'startGame', 'startGame'],
-      ];
+      return new Prompt('Выберите сохранение', saves, saves);
+    },
+    handleUserInput: async (saveName) => {
+      game = await load(saveName);
+      return 'startGame';
     },
   },
-  endGame: {
-    action: actions.endGame,
-    actionArgs: [null],
+  saveGame: {
+    getPrompt: () => {
+      return {
+        type: 'text',
+        name: 'value',
+        message: 'Как обзовем тебя, салага? (речь о сохранении)'
+      }
+    },
+    handleUserInput: async (saveName) => {
+      game.name = saveName;
+      save(game, saveName);
+      return 'menu';
+    }
   },
   startGame: {
-    getPromptData: () => {
-      console.log('Описание Мира: \n');
+    getPrompt: () => {
       console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
-      return [ 'Выберите, куда хотите пойти: ', 
-      cityTitles, cityValues, cityDescriptions
-    ]},
+      return new Prompt('Выберите, куда хотите пойти: ', 
+      cityTitles, cityValues, cityDescriptions);
+    }
   },
-
-  saves: {
-    action: 'showSaves',
-    prompt: {
-      type: 'select',
-      name: 'next',
-      message: 'Выберите сохранение:',
-      choices: [
-        { title: 'Новая игра', value: 'startGame' },
-        { title: 'Продолжить', value: 'saves' },
-        { title: 'Сохранить', value: 'save' },
-        { title: 'Выйти', value: 'endGame' },
-      ],
-    },
-  },
-
   townhallActions: {
     getPromptData: () => {
       console.log('Вы зашли в городскую ратушу.\n');
@@ -127,5 +130,3 @@ const configs = {
     ]},
   }
 };
-
-export default configs;

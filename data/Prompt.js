@@ -4,7 +4,7 @@ class Prompt {
   // titles: array
   // values: array
   // description: array
-  constructor(message, titles, values, description = []) {
+  constructor(message, titles, values, description = [], disabled) {
     this.type = 'select';
     this.name = 'value';
     this.message = message;
