@@ -1,12 +1,10 @@
 const cities = {
   Самсана: {
-    buildings: [
-      { title: 'Ратуша', description: 'главное здание города', value: 'townhallActions' },
-      { title: 'Таверна', description: 'отдохнуть и прикупить вещей для похода', value: 'tavernActions' },
-      { title: 'Рынок', description: 'купить аммуницию', value: 'marketActions' },
-      { title: 'Центр Инженерии', description: 'найм и улучшение войск', value: 'engineerActions' },
-      { title: 'Госпиталь', description: 'лечение войск', value: 'hospitalActions' },
-    ],
+    buildings: {
+      titles: ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии', 'Госпиталь'],
+      values: ['townhallActions', 'tavernActions', 'marketActions', 'engineerActions', 'hospitalActions'],
+      descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск', 'лечение войск']
+    }
   },
 
   Дирра: {
