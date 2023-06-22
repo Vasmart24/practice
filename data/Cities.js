@@ -25,11 +25,6 @@ const cities = {
         titles: ['найм', 'улучшить', 'разобрать','вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
         values: ['hireTroops', 'upgradeTroops', 'recycleTroops','backwards']
-      },
-      hospital: {
-        titles: ['лечить', 'вернуться'],
-        descriptions: ['лечение войск', 'Выход в город'],
-        values: ['heal', 'backwards']
       }
     },
   },

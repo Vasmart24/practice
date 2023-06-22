@@ -1,5 +1,4 @@
 import { save, load, getSaves } from '../src/save.js';
-import actions from '../src/actions.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 
@@ -25,9 +24,6 @@ const engineeringTitles = city.buildingsActions.engineering.titles;
 const engineeringDescriptions = city.buildingsActions.engineering.descriptions;
 const engineeringValues = city.buildingsActions.engineering.values;
 
-const hospitalTitles = city.buildingsActions.hospital.titles;
-const hospitalDescriptions = city.buildingsActions.hospital.descriptions;
-const hospitalValues = city.buildingsActions.hospital.values;
 // следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
 
 
@@ -107,13 +103,6 @@ const configs = {
     ]},
   },
 
-  hospitalActions: {
-    getPromptData: () => {
-      console.log('Вы зашли в госпиталь.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      hospitalTitles, hospitalValues, hospitalDescriptions
-    ]},
-  }
 };
 
 export default configs;
