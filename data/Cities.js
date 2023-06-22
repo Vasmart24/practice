@@ -1,9 +1,9 @@
 const cities = {
   Самсана: {
     buildings: {
-      titles: ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии'],
-      descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск'],
-      values: ['townhallActions', 'tavernActions', 'marketActions', 'engineeringActions']
+      titles: ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии', 'Окраина'],
+      descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск', 'выйти за город'],
+      values: ['townhallActions', 'tavernActions', 'marketActions', 'engineeringActions', 'battleActions']
     },
     buildingsActions: {
       townhall: {
@@ -33,7 +33,7 @@ const cities = {
     buildings: {
       titles: ['Ратуша', 'Отель', 'Казармы', 'Арена', 'Кузница'],
       descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'найм и улучшение войск', 'выйти на поединок', 'улучшить аммуницию'],
-      values: ['townhallActions', 'tavernActions', 'engineerActions', 'battleActions', 'ammunitionActions']
+      values: ['townhallActions', 'tavernActions', 'engineerActions', 'battleActions', 'blacksmithActions']
     },
     buildingsActions: {
       townhall: {
@@ -54,12 +54,12 @@ const cities = {
       arena: {
         titles: ['сразиться', 'вернуться'],
         descriptions: ['выйти на поединок', 'Выход в город'],
-        values: []                                                 //dodelat''''''
+        values: ['beginBattle', 'backwards']
       },
       blacksmith: {
         titles: ['создать', 'продать', 'вернуться'],
         descriptions: ['создать аммуницию', 'продать аммуницию', 'выход в город'],
-        values: [' ', ' ', 'backwards']                                                 //dodelat''''''
+        values: ['craft', 'sellAmmunition', 'backwards']
       }
     },
   },
@@ -89,7 +89,7 @@ const cities = {
       arena: {
         titles: ['сразиться', 'вернуться'],
         descriptions: ['выйти на поединок', 'Выход в город'],
-        values: []                                                          //dodelat''''''
+        values: ['beginBattle', 'backwards']
       },
     },
   },
