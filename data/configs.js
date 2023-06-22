@@ -25,9 +25,14 @@ const engineeringTitles = city.buildingsActions.engineering.titles;
 const engineeringDescriptions = city.buildingsActions.engineering.descriptions;
 const engineeringValues = city.buildingsActions.engineering.values;
 
-const hospitalTitles = city.buildingsActions.hospital.titles;
-const hospitalDescriptions = city.buildingsActions.hospital.descriptions;
-const hospitalValues = city.buildingsActions.hospital.values;
+const arenaTitles = city.buildingsActions.arena.titles;
+const arenaDescriptions = city.buildingsActions.arena.descriptions;
+const arenaValues = city.buildingsActions.arena.values;
+
+const blacksmithTitles = city.buildingsActions.blacksmith.titles;
+const blacksmithDescriptions = city.buildingsActions.blacksmith.descriptions;
+const blacksmithValues = city.buildingsActions.blacksmith.values;
+
 // следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
 
 export let game = {
@@ -110,11 +115,19 @@ export const configs = {
     ]},
   },
 
-  hospitalActions: {
+  arenaActions: {
     getPromptData: () => {
-      console.log('Вы зашли в госпиталь.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      hospitalTitles, hospitalValues, hospitalDescriptions
+      console.log('Вы пришли на арену.\n');
+      return [ 'Выберите дальнейшее действие: ',
+      arenaTitles, arenaValues, arenaDescriptions
+    ]},
+  },
+
+  blacksmithActions: {
+    getPromptData: () => {
+      console.log('Вы зашли в кузницу.\n');
+      return [ 'Выберите дальнейшее действие: ',
+      blacksmithTitles, blacksmithValues, blacksmithDescriptions
     ]},
   }
 };
