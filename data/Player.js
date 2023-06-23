@@ -3,7 +3,8 @@ export const player = {
   currentLocation: ['Самсана'],
   army: {},
   inventory: [
-    { name: ''}
+
+    { name: '' },
   ],
   ammunition: {
    weapon: { name: '', parameters: { atk: 0, armor: 0 }, equiped: false},
@@ -18,9 +19,7 @@ export const player = {
   lvl: 1,
 
   getPlayerAmmunition() {
-    const inventory = this.ammunition.map((item) => {
-      return `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`
-    });
+    const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);
     return inventory.join('\n');
   },
 
