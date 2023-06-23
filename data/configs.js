@@ -1,12 +1,25 @@
+import Troubadour from 'troubadour';
 import { save, load, getSaves } from '../src/save.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 import Prompt from './Prompt.js';
 
+const troubadour = new Troubadour('sox');
+
+/*
+troubadour.on('start', () => {
+  console.log('Music is playing...');
+});
+
+troubadour.on('end', () => {
+  console.log('Music stopped...');
+});
+*/
+
 const city = cities[player.getPlayerLocation()];
 
 const cityTitles = city.buildings.titles;
-const cityValues = city.buildings.values; 
+const cityValues = city.buildings.values;
 const cityDescriptions = city.buildings.descriptions;
 
 const townhallTitles = city.buildingsActions.townhall.titles;
@@ -37,23 +50,29 @@ const engineeringValues = city.buildingsActions.engineering.values;
 // Хранилище данных конкретной игры
 export let game = {
   isEnded: false,
-  name: null
+  name: null,
+  player: {
+    coins: 100,
+  },
 };
 
 export const configs = {
-  
-  menu: () => {
-    return new Prompt(
-    '☰', ['🎮 Новая игра', '▶ Продолжить', '💾 Сохранить', '🪟  Выйти'],
-    ['startGame', 'savesList', 'saveGame', 'endGame'], [],
-    (val) => {
-      console.log(`val в формате ${val}`);
-      if (val === 'endGame') game.isEnded = true;
-      return val;
-    })
-  },
-  
 
+  // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
+  menu: () => {
+    troubadour.play('../Music/Nils Frahm - You.mp3');
+    return new Prompt(
+      '☰',
+      ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪟  Выйти'],
+      ['startGame', 'savesList', 'saveGame', 'endGame'],
+      [],
+      (val) => {
+        troubadour.stop();
+        if (val === 'endGame') game.isEnded = true;
+        return val;
+      },
+    );
+  },
   /*
   menu: {
     getPrompt: () => {
@@ -67,14 +86,23 @@ export const configs = {
     },
   },
   */
- 
+
   savesList: async () => {
     const saves = await getSaves();
-    return new Prompt('Выберите сохранение', saves, saves, [],
-    async (saveName) => {
-      game = await load(saveName);
-      return 'startGame';
-    });
+    const titles = [...saves];
+    const values = [...saves];
+    titles.push('Назад');
+    return new Prompt(
+      'Выберите сохранение',
+      titles,
+      values,
+      [],
+      async (saveName) => {
+        if (!saveName) return 'menu';
+        game = await load(saveName);
+        return 'startGame';
+      },
+    );
   },
 
   /*
@@ -90,6 +118,23 @@ export const configs = {
   },
   */
 
+  saveGame: () => {
+    troubadour.play('../Music/Recording 1.mp3');
+    return {
+      type: 'text',
+      name: 'value',
+      message: 'Как обзовем тебя, салага? (речь о сохранении)',
+      format: async (saveName) => {
+        game.name = saveName;
+        save(game, saveName);
+        console.log('❗ Сохранение заползло под шконку в saves, начальник');
+        return 'menu';
+      },
+    };
+  },
+  // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
+
+  /*
   saveGame: {
     getPrompt: () => {
       return {
@@ -105,58 +150,80 @@ export const configs = {
       }
     },
   },
+  */
+
+  startGame: () => {
+    troubadour.stop();
+    console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
+    return new Prompt(
+      'Выберите, куда хотите пойти: ',
+      cityTitles,
+      cityValues,
+      cityDescriptions,
+    );
+  },
+
+  /*
   startGame: {
     getPrompt: () => {
       console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
-      return new Prompt('Выберите, куда хотите пойти: ', 
+      return new Prompt('Выберите, куда хотите пойти: ',
       cityTitles, cityValues, cityDescriptions);
     }
   },
+  */
+
   townhallActions: {
     getPromptData: () => {
       console.log('Вы зашли в городскую ратушу.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      townhallTitles, townhallValues, townhallDescriptions
-    ]},
+      return ['Выберите дальнейшее действие: ',
+        townhallTitles, townhallValues, townhallDescriptions,
+      ];
+    },
   },
 
   tavernActions: {
     getPromptData: () => {
       console.log('Вы зашли в таверну.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      tavernTitles, tavernValues, tavernDescriptions
-    ]},
+      return ['Выберите дальнейшее действие: ',
+        tavernTitles, tavernValues, tavernDescriptions,
+      ];
+    },
   },
 
   marketActions: {
     getPromptData: () => {
       console.log('Вы попали на рынок.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      marketTitles, marketValues, marketDescriptions
-    ]},
+      return ['Выберите дальнейшее действие: ',
+        marketTitles, marketValues, marketDescriptions,
+      ];
+    },
   },
 
   engineeringActions: {
     getPromptData: () => {
       console.log('Вы зашли в центр инженерии.\n');
-      return [ 'Выберите дальнейшее действие: ', 
-      engineeringTitles, engineeringValues, engineeringDescriptions
-    ]},
+      return ['Выберите дальнейшее действие: ',
+        engineeringTitles, engineeringValues, engineeringDescriptions,
+      ];
+    },
   },
 
   arenaActions: {
     getPromptData: () => {
       console.log('Вы пришли на арену.\n');
-      return [ 'Выберите дальнейшее действие: ',
-      arenaTitles, arenaValues, arenaDescriptions
-    ]},
+      return ['Выберите дальнейшее действие: ',
+        arenaTitles, arenaValues, arenaDescriptions,
+      ];
+    },
   },
 
   blacksmithActions: {
     getPromptData: () => {
       console.log('Вы зашли в кузницу.\n');
-      return [ 'Выберите дальнейшее действие: ',
-      blacksmithTitles, blacksmithValues, blacksmithDescriptions
-    ]},
-  }
+      return ['Выберите дальнейшее действие: ',
+        blacksmithTitles, blacksmithValues, blacksmithDescriptions,
+      ];
+    },
+  },
 };

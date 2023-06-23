@@ -1,4 +1,3 @@
-
 class Prompt {
   // message: string
   // titles: array
