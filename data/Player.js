@@ -1,6 +1,6 @@
 export const player = {
   name: 'Ell',
-  currentLocation: ['Самсана'],
+  currentLocation: ['Самсана', 'Таверна'],
   army: {},
   inventory: {
     ammunition: [
@@ -26,7 +26,7 @@ export const player = {
   },
 
   getPlayerLocation() {
-    return this.currentLocation[this.currentLocation.length - 1];
+    return this.currentLocation;
   },
 
   addPlayerLocation(location) {

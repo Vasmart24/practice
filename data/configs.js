@@ -1,23 +1,25 @@
-import Troubadour from 'troubadour';
 import { save, load, getSaves } from '../src/save.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 import Prompt from './Prompt.js';
+import Troubadour from 'troubadour';
 import e from './equipment.js';
 
 const troubadour = new Troubadour('sox');
 
-/*
-troubadour.on('start', () => {
-  console.log('Music is playing...');
-});
+//const troubadour = new Troubadour('sox');
 
-troubadour.on('end', () => {
-  console.log('Music stopped...');
-});
-*/
+// troubadour.on('start', () => {
+//   console.log('Music is playing...');
+// });
 
-const city = cities[player.getPlayerLocation()];
+// troubadour.on('end', () => {
+//   console.log('Music stopped...');
+// });
+
+
+const city = cities[player.getPlayerLocation()[0]];console.log(city);
+const building = city.buildingsActions[player.getPlayerLocation()[player.getPlayerLocation().length - 1]]; console.log(building);
 
 const cityTitles = city.buildings.titles;
 const cityValues = city.buildings.values;
@@ -41,14 +43,14 @@ export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
   menu: () => {
-    // troubadour.play('../Music/Nils Frahm - You.mp3');
+    //troubadour.play('sounds/menu.mp3');
     return new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪟  Выйти'],
       ['startGame', 'savesList', 'saveGame', 'endGame'],
       [],
       (val) => {
-        troubadour.stop();
+        //troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
         return val;
       },
@@ -74,7 +76,7 @@ export const configs = {
   },
 
   saveGame: () => {
-    // troubadour.play('../Music/Recording 1.mp3');
+    troubadour.play('sounds/save.mp3');
     return {
       type: 'text',
       name: 'value',
@@ -90,7 +92,7 @@ export const configs = {
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
   startGame: () => {
-    troubadour.stop();
+    troubadour.play('sounds/birds.wav');
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
     return new Prompt(
       'Выберите, куда хотите пойти: ',
