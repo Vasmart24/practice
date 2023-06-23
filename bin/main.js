@@ -8,7 +8,7 @@ const makePrompt = async (prompt) => {
   console.clear();
   if (game.isEnded) return;
   const { value } = await prompts(await prompt());
-  troubadour.play('sounds/click.mp3');
+  troubadour.play('sounds/click.wav');
   makePrompt(configs[value]);
 };
 
