@@ -5,7 +5,6 @@ import cities from './Cities.js';
 import Prompt from './Prompt.js';
 
 const troubadour = new Troubadour('sox');
-
 /*
 troubadour.on('start', () => {
   console.log('Music is playing...');
@@ -16,7 +15,8 @@ troubadour.on('end', () => {
 });
 */
 
-const city = cities[player.getPlayerLocation()];
+const city = cities[player.getPlayerLocation()[0]];console.log(city);
+const building = city.buildingsActions[player.getPlayerLocation()[player.getPlayerLocation().length - 1]]; console.log(building);
 
 const cityTitles = city.buildings.titles;
 const cityValues = city.buildings.values;
