@@ -75,7 +75,7 @@ export const configs = {
   },
 
   saveGame: () => {
-    troubadour.play('sounds/saves.mp3');
+    troubadour.play('sounds/save.mp3');
     return {
       type: 'text',
       name: 'value',
