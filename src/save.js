@@ -31,7 +31,6 @@ export const save = async (game, name) => {
       filename = `/save${indexes.length > 0 ? indexes[indexes.length - 1] + 1 : 0}.json`;
     }
     await fsp.writeFile(path + filename, JSON.stringify(game, null, 2));
-    console.log('Игра успешно сохранена.');
   } catch (e) {
     throw new Error(e);
   }
@@ -42,7 +41,6 @@ export const load = async (saveName) => {
   try {
     const rawdata = await fsp.readFile(path + filename);
     const data = JSON.parse(rawdata);
-    console.log('Игра успешно загружена.');
     return data;
   } catch (e) {
     throw new Error(e);

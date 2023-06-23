@@ -34,46 +34,76 @@ const engineeringValues = city.buildingsActions.engineering.values;
 // const blacksmithValues = city.buildingsActions.blacksmith.values;
 // следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
 
+// Хранилище данных конкретной игры
 export let game = {
   isEnded: false,
   name: null
 };
 
 export const configs = {
+  
+  menu: () => {
+    return new Prompt(
+    '☰', ['🎮 Новая игра', '▶ Продолжить', '💾 Сохранить', '🪟  Выйти'],
+    ['startGame', 'savesList', 'saveGame', 'endGame'], [],
+    (val) => {
+      console.log(`val в формате ${val}`);
+      if (val === 'endGame') game.isEnded = true;
+      return val;
+    })
+  },
+  
+
+  /*
   menu: {
     getPrompt: () => {
       return new Prompt(
-      '☰', ['Новая игра', 'Продолжить', 'Сохранить', 'Выйти'],
-      ['startGame', 'savesList', 'saveGame', 'endGame'])
-    },
-    handleUserInput: (value) => {
-      if (value === 'endGame') game.isEnded = true;
-      return value;
+      '☰', ['🎮 Новая игра', '▶ Продолжить', '💾 Сохранить', '🪟  Выйти'],
+      ['startGame', 'savesList', 'saveGame', 'endGame'], [],
+      (val) => {
+        if (val === 'endGame') game.isEnded = true;
+        return val;
+      })
     },
   },
+  */
+ 
+  savesList: async () => {
+    const saves = await getSaves();
+    return new Prompt('Выберите сохранение', saves, saves, [],
+    async (saveName) => {
+      game = await load(saveName);
+      return 'startGame';
+    });
+  },
+
+  /*
   savesList: {
     getPrompt: async () => {
       const saves = await getSaves();
-      return new Prompt('Выберите сохранение', saves, saves);
-    },
-    handleUserInput: async (saveName) => {
-      game = await load(saveName);
-      return 'startGame';
+      return new Prompt('Выберите сохранение', saves, saves, [],
+      async (saveName) => {
+        game = await load(saveName);
+        return 'startGame';
+      });
     },
   },
+  */
+
   saveGame: {
     getPrompt: () => {
       return {
         type: 'text',
         name: 'value',
-        message: 'Как обзовем тебя, салага? (речь о сохранении)'
+        message: 'Как обзовем тебя, салага? (речь о сохранении)',
+        format: async (saveName) => {
+          game.name = saveName;
+          save(game, saveName);
+          console.log('❗ Сохранение заползло под шконку в saves, начальник');
+          return 'menu';
+        }
       }
     },
-    handleUserInput: async (saveName) => {
-      game.name = saveName;
-      save(game, saveName);
-      return 'menu';
-    }
   },
   startGame: {
     getPrompt: () => {
