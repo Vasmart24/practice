@@ -3,6 +3,7 @@ import { save, load, getSaves } from '../src/save.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 import Prompt from './Prompt.js';
+import e from './equipment.js';
 
 const troubadour = new Troubadour('sox');
 
@@ -22,9 +23,9 @@ const cityTitles = city.buildings.titles;
 const cityValues = city.buildings.values;
 const cityDescriptions = city.buildings.descriptions;
 
-const buildingsTitles = building.titles;
-const buildingsDescriptions = building.descriptions;
-const buildingsValues = building.values;
+// const buildingsTitles = building.titles;
+// const buildingsDescriptions = building.descriptions;
+// const buildingsValues = building.values;
 // следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
 
 // Хранилище данных конкретной игры
@@ -40,7 +41,7 @@ export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
   menu: () => {
-    troubadour.play('../Music/Nils Frahm - You.mp3');
+    // troubadour.play('../Music/Nils Frahm - You.mp3');
     return new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪟  Выйти'],
@@ -53,19 +54,6 @@ export const configs = {
       },
     );
   },
-  /*
-  menu: {
-    getPrompt: () => {
-      return new Prompt(
-      '☰', ['🎮 Новая игра', '▶ Продолжить', '💾 Сохранить', '🪟  Выйти'],
-      ['startGame', 'savesList', 'saveGame', 'endGame'], [],
-      (val) => {
-        if (val === 'endGame') game.isEnded = true;
-        return val;
-      })
-    },
-  },
-  */
 
   savesList: async () => {
     const saves = await getSaves();
@@ -85,21 +73,8 @@ export const configs = {
     );
   },
 
-  /*
-  savesList: {
-    getPrompt: async () => {
-      const saves = await getSaves();
-      return new Prompt('Выберите сохранение', saves, saves);
-    },
-    handleUserInput: async (saveName) => {
-      game = await load(saveName);
-      return 'startGame';
-    },
-  },
-  */
-
   saveGame: () => {
-    troubadour.play('../Music/Recording 1.mp3');
+    // troubadour.play('../Music/Recording 1.mp3');
     return {
       type: 'text',
       name: 'value',
@@ -114,24 +89,6 @@ export const configs = {
   },
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  /*
-  saveGame: {
-    getPrompt: () => {
-      return {
-        type: 'text',
-        name: 'value',
-        message: 'Как обзовем тебя, салага? (речь о сохранении)',
-        format: async (saveName) => {
-          game.name = saveName;
-          save(game, saveName);
-          console.log('❗ Сохранение заползло под шконку в saves, начальник');
-          return 'menu';
-        }
-      }
-    },
-  },
-  */
-
   startGame: () => {
     troubadour.stop();
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
@@ -142,66 +99,103 @@ export const configs = {
       cityDescriptions,
     );
   },
-
-  /*
-  startGame: {
-    getPrompt: () => {
-      console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
-      return new Prompt('Выберите, куда хотите пойти: ',
-      cityTitles, cityValues, cityDescriptions);
-    }
+  
+  // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ЭКИПИРОВКИ ПРЕДМЕТОВ ----------
+  equipment: () => {
+    return new Prompt(
+      'Выбери действие',
+      ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
+      ['equip', 'unequip','backwards'],
+      ['Выбрать снаряжение из инвентаря','Снять надетое снаряжение','Вернутся в город'],
+    );
   },
 
-    townhallActions: () => {
-      console.log('Вы зашли в городскую ратушу.\n');
-      player.addPlayerLocation('Ратуша');
-      return new Prompt('Выберите дальнейшее действие: ', 
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    },
-
-  tavernActions: {
-    getPrompt: () => {
-      console.log('Вы зашли в таверну.\n');
-      return new Prompt('Выберите дальнейшее действие: ', 
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    },
-    handleUserInput: (value) => value
+  equip: () => {
+    const titles = e.getAmmunitionName(player);
+    const values = e.getAmmunitionType(player);
+    const description = e.getAmmunitionDescription(player);
+    
+    console.log(titles);
+    console.log(values);
+    console.log(description);
+    return new Prompt(
+      'Выбери снаряжение',
+      [...titles.flat()],
+      [...values.flat()],
+      [...description.flat()]
+    
+    );
   },
-
-  marketActions: {
-    getPrompt: () => {
-      console.log('Вы попали на рынок.\n');
-      return new Prompt('Выберите дальнейшее действие: ', 
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    },
-    handleUserInput: (value) => value
-  },
-
-  engineeringActions: {
-    getPrompt: () => {
-      console.log('Вы зашли в центр инженерии.\n');
-      return new Prompt('Выберите дальнейшее действие: ', 
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    },
-    handleUserInput: (value) => value
-  },
-
-  arenaActions: {
-    getPrompt: () => {
-      console.log('Вы пришли на арену.\n');
-      return new Prompt('Выберите дальнейшее действие: ',
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    },
-    handleUserInput: (value) => {
-    }
-  },
-
-  blacksmithActions: {
-    getPromptData: () => {
-      console.log('Вы зашли в кузницу.\n');
-      return new Prompt('Выберите дальнейшее действие: ',
-      buildingsTitles, buildingsValues, buildingsDescriptions)
-    },
-    handleUserInput: (value) => value
+  unequip: () => {
+      const titles = e.getEquipAmunitionName(player);
+      const values = e.getEquipAmmunitionType(player);
+      const description = e.getEquipAmmunitionDescription(player);
+    return new Prompt(
+      'Выбери снаряжени',
+      [...titles.flat()],
+      [...values.flat()],
+      [...description.flat()]
+    );
   }
 };
+//   startGame: {
+//     getPrompt: () => {
+//       console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
+//       return new Prompt('Выберите, куда хотите пойти: ',
+//       cityTitles, cityValues, cityDescriptions);
+//     }
+//   },
+
+//     townhallActions: () => {
+//       console.log('Вы зашли в городскую ратушу.\n');
+//       player.addPlayerLocation('Ратуша');
+//       return new Prompt('Выберите дальнейшее действие: ', 
+//       buildingsTitles, buildingsValues, buildingsDescriptions);
+//     },
+
+//   tavernActions: {
+//     getPrompt: () => {
+//       console.log('Вы зашли в таверну.\n');
+//       return new Prompt('Выберите дальнейшее действие: ', 
+//       buildingsTitles, buildingsValues, buildingsDescriptions);
+//     },
+//     handleUserInput: (value) => value
+//   },
+
+//   marketActions: {
+//     getPrompt: () => {
+//       console.log('Вы попали на рынок.\n');
+//       return new Prompt('Выберите дальнейшее действие: ', 
+//       buildingsTitles, buildingsValues, buildingsDescriptions);
+//     },
+//     handleUserInput: (value) => value
+//   },
+
+//   engineeringActions: {
+//     getPrompt: () => {
+//       console.log('Вы зашли в центр инженерии.\n');
+//       return new Prompt('Выберите дальнейшее действие: ', 
+//       buildingsTitles, buildingsValues, buildingsDescriptions);
+//     },
+//     handleUserInput: (value) => value
+//   },
+
+//   arenaActions: {
+//     getPrompt: () => {
+//       console.log('Вы пришли на арену.\n');
+//       return new Prompt('Выберите дальнейшее действие: ',
+//       buildingsTitles, buildingsValues, buildingsDescriptions);
+//     },
+//     handleUserInput: (value) => {
+//     }
+//   },
+
+//   blacksmithActions: {
+//     getPromptData: () => {
+//       console.log('Вы зашли в кузницу.\n');
+//       return new Prompt('Выберите дальнейшее действие: ',
+//       buildingsTitles, buildingsValues, buildingsDescriptions)
+//     },
+//     handleUserInput: (value) => value
+//   }
+// };
