@@ -6,22 +6,22 @@ const cities = {
       values: ['townhallActions', 'tavernActions', 'marketActions', 'engineeringActions', 'battleActions']
     },
     buildingsActions: {
-      townhall: {
+      Ратуша: {
         titles: ['поговорить с мэром', 'сдать задание', 'вернуться'],
         descriptions: ['узнать о городе и получить задаия', 'выполнить задание', 'Выход в город'],
         values: ['getMainMission', 'completeMainMission', 'backwards']
       },
-      tavern: {
+      Таверна: {
         titles: ['купить', 'продать', 'отдых', 'вернуться'],
         descriptions: ['купить провиант', 'продать провиант', 'восстановить выносливость и сохраниться', 'Выход в город'],
         values: ['buy', 'sellItems', 'rest', 'backwards']
       },
-      market: {
+      Рынок: {
         titles: ['создать', 'продать', 'вернуться'],
         descriptions: ['изготовить снаряжение', 'продать снаряжение', 'Выход в город'],
         values: ['craft', 'sellAmmunition', 'backwards']
       },
-      engineering: {
+      Инженерия: {
         titles: ['найм', 'улучшить', 'разобрать','вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
         values: ['hireTroops', 'upgradeTroops', 'recycleTroops','backwards']
@@ -36,27 +36,27 @@ const cities = {
       values: ['townhallActions', 'tavernActions', 'engineerActions', 'battleActions', 'blacksmithActions']
     },
     buildingsActions: {
-      townhall: {
+      Ратуша: {
         titles: ['поговорить с мэром', 'сдать задание', 'вернуться'],
         descriptions: ['узнать о городе и получить задаия', 'выполнить задание', 'Выход в город'],
         values: ['getMainMission', 'completeMainMission', 'backwards']
       },
-      tavern: {
+      Отель: {
         titles: ['купить', 'продать', 'отдых', 'вернуться'],
         descriptions: ['купить провиант', 'продать провиант', 'восстановить выносливость и сохраниться', 'Выход в город'],
         values: ['buy', 'sellItems', 'rest', 'backwards']
       },
-      engineering: {
+      Казармы: {
         titles: ['найм', 'улучшить', 'разобрать','вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
         values: ['hireTroops', 'upgradeTroops', 'recycleTroops','backwards']
       },
-      arena: {
+      Арена: {
         titles: ['сразиться', 'вернуться'],
         descriptions: ['выйти на поединок', 'Выход в город'],
         values: ['beginBattle', 'backwards']
       },
-      blacksmith: {
+      Кузница: {
         titles: ['создать', 'продать', 'вернуться'],
         descriptions: ['создать аммуницию', 'продать аммуницию', 'выход в город'],
         values: ['craft', 'sellAmmunition', 'backwards']

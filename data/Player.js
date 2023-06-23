@@ -1,6 +1,6 @@
 export const player = {
   name: 'Ell',
-  currentLocation: 'Самсана',
+  currentLocation: ['Самсана'],
   army: {},
   inventory: [
     { name: ''}
@@ -25,11 +25,15 @@ export const player = {
   },
 
   getPlayerLocation() {
-    return this.currentLocation;
+    return this.currentLocation[this.currentLocation.length - 1];
   },
 
-  setPlayerLocation(location) {
-    this.currentLocation = location;
+  addPlayerLocation(location) {
+    this.currentLocation.push(location);
+  },
+
+  backwards() {
+    this.currentLocation.pop();
   },
 
   getPlayerName() {
@@ -37,4 +41,3 @@ export const player = {
   },
 };
 
-console.log(player.getPlayerAmmunition());
