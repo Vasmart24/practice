@@ -53,19 +53,6 @@ export const configs = {
       },
     );
   },
-  /*
-  menu: {
-    getPrompt: () => {
-      return new Prompt(
-      '☰', ['🎮 Новая игра', '▶ Продолжить', '💾 Сохранить', '🪟  Выйти'],
-      ['startGame', 'savesList', 'saveGame', 'endGame'], [],
-      (val) => {
-        if (val === 'endGame') game.isEnded = true;
-        return val;
-      })
-    },
-  },
-  */
 
   savesList: async () => {
     const saves = await getSaves();
@@ -85,19 +72,6 @@ export const configs = {
     );
   },
 
-  /*
-  savesList: {
-    getPrompt: async () => {
-      const saves = await getSaves();
-      return new Prompt('Выберите сохранение', saves, saves);
-    },
-    handleUserInput: async (saveName) => {
-      game = await load(saveName);
-      return 'startGame';
-    },
-  },
-  */
-
   saveGame: () => {
     troubadour.play('../Music/Recording 1.mp3');
     return {
@@ -114,24 +88,6 @@ export const configs = {
   },
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  /*
-  saveGame: {
-    getPrompt: () => {
-      return {
-        type: 'text',
-        name: 'value',
-        message: 'Как обзовем тебя, салага? (речь о сохранении)',
-        format: async (saveName) => {
-          game.name = saveName;
-          save(game, saveName);
-          console.log('❗ Сохранение заползло под шконку в saves, начальник');
-          return 'menu';
-        }
-      }
-    },
-  },
-  */
-
   startGame: () => {
     troubadour.stop();
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
@@ -143,7 +99,7 @@ export const configs = {
     );
   },
 
-  /*
+
   startGame: {
     getPrompt: () => {
       console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
