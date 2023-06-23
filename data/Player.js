@@ -1,18 +1,18 @@
 export const player = {
   name: 'Ell',
-  currentLocation: 'Самсана',
+  currentLocation: ['Самсана'],
   army: {},
   inventory: [
 
     { name: '' },
   ],
   ammunition: [
-    {
-      name: 'щит', type: 'оружие', parameters: { atk: 0, armor: 10 }, equiped: '',
-    },
-    {
-      name: 'меч', type: 'оружие', parameters: { atk: 10, armor: 0 }, equiped: '',
-    },
+    { name: '', type: 'оружие', parameters: { atk: 0, armor: 0 }, equiped: 0},
+    { name: '', type: 'голова', parameters: { atk: 0, armor: 0 }, equiped: 0},
+    { name: '', type: 'нагрудник', parameters: { atk: 0, armor: 0 }, equiped: 0},
+    { name: '', type: 'поножи', parameters: { atk: 0, armor: 0 }, equiped: 0},
+    { name: '', type: 'ботинки', parameters: { atk: 0, armor: 0 }, equiped: 0},
+    { name: '', type: 'кольцо', parameters: { atk: 0, armor: 0 }, equiped: 0},
   ],
   atk: 0,
   armor: 0,
@@ -24,11 +24,15 @@ export const player = {
   },
 
   getPlayerLocation() {
-    return this.currentLocation;
+    return this.currentLocation[this.currentLocation.length - 1];
   },
 
-  setPlayerLocation(location) {
-    this.currentLocation = location;
+  addPlayerLocation(location) {
+    this.currentLocation.push(location);
+  },
+
+  backwards() {
+    this.currentLocation.pop();
   },
 
   getPlayerName() {
@@ -36,4 +40,3 @@ export const player = {
   },
 };
 
-console.log(player.getPlayerAmmunition());
