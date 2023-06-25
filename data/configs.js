@@ -25,7 +25,6 @@ const cityValues = city.buildings.values;
 const cityDescriptions = city.buildings.descriptions;
 
 // Хранилище данных конкретной игры
-
 export let game = {
   isEnded: false,
   name: null,
@@ -34,6 +33,16 @@ export let game = {
     coins: 100,
   },
 };
+
+const setDifficulty = (val) => {
+  game.difficulty = val;
+};
+
+// difficulty
+const difficultyMessage = 'Выберите сложность';
+const difficultyTitles = ['Легкий', 'Нормальный', 'Сложный'];
+const difficultyValues = ['easy', 'normal', 'hard'];
+const difficultyDescriptions = ['Для слабых людей', 'Очереднярский уровень', 'Самый крутой что ли?'];
 
 export const configs = {
 
@@ -44,13 +53,26 @@ export const configs = {
     return new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪛  Настройки', '🪟  Выйти'],
-      ['samsanCity', 'savesList', 'saveGame', 'settings', 'endGame'],
+      ['initGame', 'savesList', 'saveGame', 'settings', 'endGame'],
       [],
       (val) => {
         //troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
         return val;
       },
+    );
+  },
+
+  initGame: () => {
+    return new Prompt(
+      difficultyMessage,
+      difficultyTitles,
+      difficultyValues,
+      difficultyDescriptions,
+      (val) => {
+        setDifficulty(val);
+        return 'samsanCity';
+      }
     );
   },
 
@@ -97,12 +119,11 @@ export const configs = {
   difficulty: () => {
     return new Prompt(
       'Выберите сложность',
-      ['Легкий', 'Нормальный', 'Сложный', 'Назад'],
-      ['easy', 'normal', 'hard', 'settings'],
-      ['Для слабых людей', 'Очереднярский уровень', 'Самый крутой что ли?'],
+      [...difficultyTitles, 'Назад'],
+      [...difficultyValues, 'settings'],
+      difficultyDescriptions,
       (val) => {
-        console.log(val);
-        if (val !== 'settings') game.difficulty = val;
+        if (val !== 'settings') setDifficulty(val);
         return 'settings';
       }
     );
