@@ -128,9 +128,7 @@ export const configs = {
       }
     );
   },
-  // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  // menu -> Новая игра -> samsanCity
   samsanCity: () => {
     troubadour.play('sounds/birds.wav');
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
