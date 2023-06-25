@@ -1,0 +1,8 @@
+{
+  "isEnded": false,
+  "name": "vasmart",
+  "difficulty": "hard",
+  "player": {
+    "coins": 100
+  }
+}

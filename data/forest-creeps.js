@@ -1,6 +1,7 @@
 const firstCityCreeps = {
-  bloodWolf: {
-    name: 'Blood wolf',
+  Биофенрикс: {
+    name: 'Биофенрикс',
+    type: '',
     hp: 100,
     dmg: '25-35',
     armor: '5%',
@@ -13,12 +14,13 @@ const firstCityCreeps = {
     ],
   },
 
-  hydralisk: {
-    name: 'Hydralisk',
-    hp: 75,
+  Гидралиск: {
+    name: 'Гидралиск',
+    type: '',
+    hp: 1150,
     dmg: '30-35',
-    armor: '10%',
-    count: 0,
+    armor: '15%',
+    count: 1,
     loot: [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -29,18 +31,27 @@ const firstCityCreeps = {
 
   // B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
 
-  skeletron: {
-    name: 'Skeletron',
+  Острагаар: {
+    name: 'Острагаар',
+    type: 'armor',
     hp: 55,
     dmg: '10-15',
     armor: '25%',
+    count: 0,
     loot: [
       { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
       { title: 'bones', description: 'Can be sold.', value: '' },
     ],
   },
-
+  Коралиозверь: {
+    name: 'Коралиозверь',
+    type: 'range',
+    hp: 110,
+    dmg: '20-30',
+    armor: '8%',
+    count: 0,
+  },
 };
 
 //   'Есть четыре типа кристаллов: базовые, продвинутые, промежуточные и королевские.\n';
@@ -55,6 +66,7 @@ const secondCityCreeps = {
     hp: 60,
     damage: '30-40',
     armor: '60%',
+    count: 0,
     loot: [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -68,6 +80,7 @@ const secondCityCreeps = {
     hp: 80,
     damage: '25-35',
     armor: '20%',
+    count: 0,
     loot: [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -80,6 +93,7 @@ const secondCityCreeps = {
     hp: 100,
     damage: '25-30',
     armor: '30%',
+    count: 0,
     loot: [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -93,6 +107,7 @@ const secondCityCreeps = {
     hp: 150,
     damage: '20-25',
     armor: '40%',
+    count: 0,
     loot: [
       { title: 'intermediate shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -107,6 +122,7 @@ const thirdCityCreeps = {
     hp: 0,
     damage: '',
     armor: '',
+    count: 0,
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
@@ -118,6 +134,7 @@ const thirdCityCreeps = {
     hp: 0,
     damage: '',
     armor: '',
+    count: 0,
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
@@ -129,6 +146,7 @@ const thirdCityCreeps = {
     hp: 0,
     damage: '',
     armor: '',
+    count: 0,
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },
@@ -140,6 +158,7 @@ const thirdCityCreeps = {
     hp: 0,
     damage: '',
     armor: '',
+    count: 0,
     loot: [
       { title: 'BLANK', description: 'BLANK', value: '' },
       { title: 'BLANK', description: 'BLANK', value: '' },

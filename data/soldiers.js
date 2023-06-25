@@ -1,7 +1,7 @@
 import prompts from 'prompts';
 
 const heavyMarine = {
-  class: 'heavy marine',
+  name: 'тяжёлый пехотинец',
   type: 'armor',
   hp: 160,
   dmg: 25,
@@ -10,7 +10,7 @@ const heavyMarine = {
 };
 
 const LightMarine = {
-  class: 'light marine',
+  name: 'пехотинец',
   type: 'range',
   hp: 170,
   dmg: 30,
@@ -19,7 +19,7 @@ const LightMarine = {
 };
 
 const penetrators = {
-  class: 'penetrators',
+  name: 'плазма-воины',
   type: 'piercing',
   hp: 110,
   dmg: 45,
@@ -28,8 +28,8 @@ const penetrators = {
 };
 
 const psionics = {
-  class: 'psionics',
-  type: 'psi',
+  name: 'пси-адепты',
+  type: 'psi-shield',
   hp: 10,
   dmg: 19,
   armor: '0%',

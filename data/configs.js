@@ -3,7 +3,7 @@ import { player } from './Player.js';
 import cities from './Cities.js';
 import Prompt from './Prompt.js';
 import Troubadour from 'troubadour';
-import e from './equipment.js';
+import equip from './equipment.js';
 
 const troubadour = new Troubadour('sox');
 
@@ -58,6 +58,7 @@ export const configs = {
       (val) => {
         //troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
+        console.clear();
         return val;
       },
     );
@@ -152,9 +153,9 @@ export const configs = {
   },
 
   equip: () => {
-    const titles = e.getAmmunitionName(player);
-    const values = e.getAmmunitionType(player);
-    const description = e.getAmmunitionDescription(player);
+    const titles = equip.getAmmunitionName(player);
+    const values = equip.getAmmunitionType(player);
+    const description = equip.getAmmunitionDescription(player);
 
     console.log(titles);
     console.log(values);
@@ -168,9 +169,9 @@ export const configs = {
   },
 
   unequip: () => {
-      const titles = e.getEquipAmunitionName(player);
-      const values = e.getEquipAmmunitionType(player);
-      const description = e.getEquipAmmunitionDescription(player);
+      const titles = equip.getEquipAmunitionName(player);
+      const values = equip.getEquipAmmunitionType(player);
+      const description = equip.getEquipAmmunitionDescription(player);
     return new Prompt(
       'Выбери снаряжени',
       [...titles.flat()],
@@ -233,19 +234,3 @@ export const configs = {
   },
 };
 
-//   arenaActions: () => {
-//       console.log('Вы пришли на арену.\n');
-//       return new Prompt('Выберите дальнейшее действие: ',
-//       buildingsTitles, buildingsValues, buildingsDescriptions);
-//     },
-//   },
-
-//   blacksmithActions: {
-//     getPromptData: () => {
-//       console.log('Вы зашли в кузницу.\n');
-//       return new Prompt('Выберите дальнейшее действие: ',
-//       buildingsTitles, buildingsValues, buildingsDescriptions)
-//     },
-//     handleUserInput: (value) => value
-//   }
-// };
