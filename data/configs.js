@@ -9,19 +9,23 @@ const troubadour = new Troubadour('sox');
 
 //const troubadour = new Troubadour('sox');
 
-const city = cities[player.getPlayerLocation()[0]];console.log(city);
-const building = city.buildingsActions[player.getPlayerLocation()[player.getPlayerLocation().length - 1]]; console.log(building);
+// troubadour.on('start', () => {
+//   console.log('Music is playing...');
+// });
+
+// troubadour.on('end', () => {
+//   console.log('Music stopped...');
+// });
+
+
+const city = cities[player.getPlayerLocation()];
 
 const cityTitles = city.buildings.titles;
 const cityValues = city.buildings.values;
 const cityDescriptions = city.buildings.descriptions;
 
-// const buildingsTitles = building.titles;
-// const buildingsDescriptions = building.descriptions;
-// const buildingsValues = building.values;
-// следующее нужно будет переместить в новый файл, по типу 'Items'/'buyItems' и всё в таком духе
-
 // Хранилище данных конкретной игры
+
 export let game = {
   isEnded: false,
   name: null,
@@ -34,6 +38,7 @@ export let game = {
 export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
+
   menu: () => {
     //troubadour.play('sounds/menu.mp3');
     return new Prompt(
@@ -117,6 +122,7 @@ export const configs = {
   },
   
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ЭКИПИРОВКИ ПРЕДМЕТОВ ----------
+
   equipment: () => {
     return new Prompt(
       'Выбери действие',
@@ -130,7 +136,7 @@ export const configs = {
     const titles = e.getAmmunitionName(player);
     const values = e.getAmmunitionType(player);
     const description = e.getAmmunitionDescription(player);
-    
+
     console.log(titles);
     console.log(values);
     console.log(description);
@@ -138,10 +144,10 @@ export const configs = {
       'Выбери снаряжение',
       [...titles.flat()],
       [...values.flat()],
-      [...description.flat()]
-    
+      [...description.flat()],
     );
   },
+
   unequip: () => {
       const titles = e.getEquipAmunitionName(player);
       const values = e.getEquipAmmunitionType(player);
@@ -152,58 +158,67 @@ export const configs = {
       [...values.flat()],
       [...description.flat()]
     );
-  }
-};
-//   startGame: {
-//     getPrompt: () => {
-//       console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
-//       return new Prompt('Выберите, куда хотите пойти: ',
-//       cityTitles, cityValues, cityDescriptions);
-//     }
-//   },
+  },
 
-    townhallActions: () => {
-      console.log('Вы зашли в городскую ратушу.\n');
-      player.addPlayerLocation('Ратуша');
+    // ---------- ПРОМПТЫ ДЛЯ ДЕЙСТВИЙ В ГОРОДЕ ----------
+
+  samsanCity: () => {
+    troubadour.play('sounds/birds.wav');
+    console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
+    return new Prompt(
+      'Выберите, куда хотите пойти: ',
+      cityTitles,
+      cityValues,
+      cityDescriptions,
+    );
+  },
+
+  townhallActions: () => {
+    console.log('Вы зашли в городскую ратушу.\n');
+    return new Prompt('Выберите дальнейшее действие: ', 
+    city.getSamsanBuilding('Ратуша', 'titles'),
+    city.getSamsanBuilding('Ратуша', 'values'),
+    city.getSamsanBuilding('Ратуша', 'descriptions'));
+  },
+
+  tavernActions: () => {
+    console.log('Вы зашли в таверну.\n');
+    return new Prompt('Выберите дальнейшее действие: ', 
+    city.getSamsanBuilding('Таверна', 'titles'),
+    city.getSamsanBuilding('Таверна', 'values'),
+    city.getSamsanBuilding('Таверна', 'descriptions'));
+  },
+
+  marketActions: () => {
+    console.log('Вы попали на рынок.\n');
+    return new Prompt('Выберите дальнейшее действие: ', 
+    city.getSamsanBuilding('Рынок', 'titles'),
+    city.getSamsanBuilding('Рынок', 'values'),
+    city.getSamsanBuilding('Рынок', 'descriptions'));
+  },
+
+  engineeringActions: () => {
+      console.log('Вы зашли в центр БИОинженерии.\n');
       return new Prompt('Выберите дальнейшее действие: ', 
-      buildingsTitles, buildingsValues, buildingsDescriptions);
-    }
+      city.getSamsanBuilding('БИОинженерия', 'titles'),
+      city.getSamsanBuilding('БИОинженерия', 'values'),
+      city.getSamsanBuilding('БИОинженерия', 'descriptions'));
+  },
 
-//   tavernActions: {
-//     getPrompt: () => {
-//       console.log('Вы зашли в таверну.\n');
-//       return new Prompt('Выберите дальнейшее действие: ', 
-//       buildingsTitles, buildingsValues, buildingsDescriptions);
-//     },
-//     handleUserInput: (value) => value
-//   },
+  samsanBattleActions: () => {
+    console.log('Вы вышли в окраину города.\n');
+    return new Prompt('Выберите дальнейшее действие: ',
+    city.getSamsanBuilding('окраина', 'titles'),
+    city.getSamsanBuilding('окраина', 'values'),
+    city.getSamsanBuilding('окраина', 'descriptions'));
+  },
+};
 
-//   marketActions: {
-//     getPrompt: () => {
-//       console.log('Вы попали на рынок.\n');
-//       return new Prompt('Выберите дальнейшее действие: ', 
-//       buildingsTitles, buildingsValues, buildingsDescriptions);
-//     },
-//     handleUserInput: (value) => value
-//   },
-
-//   engineeringActions: {
-//     getPrompt: () => {
-//       console.log('Вы зашли в центр инженерии.\n');
-//       return new Prompt('Выберите дальнейшее действие: ', 
-//       buildingsTitles, buildingsValues, buildingsDescriptions);
-//     },
-//     handleUserInput: (value) => value
-//   },
-
-//   arenaActions: {
-//     getPrompt: () => {
+//   arenaActions: () => {
 //       console.log('Вы пришли на арену.\n');
 //       return new Prompt('Выберите дальнейшее действие: ',
 //       buildingsTitles, buildingsValues, buildingsDescriptions);
 //     },
-//     handleUserInput: (value) => {
-//     }
 //   },
 
 //   blacksmithActions: {

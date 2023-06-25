@@ -11,3 +11,6 @@ lint:
 
 publish:
 	npm publish --dry-run
+
+start:
+	node bin/main.js

@@ -1,30 +1,36 @@
 const cities = {
   Самсана: {
+    getSamsanBuilding (building, prop) {return this.buildingsActions[building][prop]},
     buildings: {
       titles: ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии', 'Окраина'],
       descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск', 'выйти за город'],
-      values: ['townhallActions', 'tavernActions', 'marketActions', 'engineeringActions', 'battleActions'],
+      values: ['townhallActions', 'tavernActions', 'marketActions', 'engineeringActions', 'samsanBattleActions'],
     },
     buildingsActions: {
       Ратуша: {
         titles: ['поговорить с мэром', 'сдать задание', 'вернуться'],
         descriptions: ['узнать о городе и получить задаия', 'выполнить задание', 'Выход в город'],
-        values: ['getMainMission', 'completeMainMission', 'backwards'],
+        values: ['getMainMission', 'completeMainMission', 'samsanCity'],
       },
       Таверна: {
         titles: ['купить', 'продать', 'отдых', 'вернуться'],
         descriptions: ['купить провиант', 'продать провиант', 'восстановить выносливость и сохраниться', 'Выход в город'],
-        values: ['buy', 'sellItems', 'rest', 'backwards'],
+        values: ['buy', 'sellItems', 'rest', 'samsanCity'],
       },
       Рынок: {
         titles: ['создать', 'продать', 'вернуться'],
         descriptions: ['изготовить снаряжение', 'продать снаряжение', 'Выход в город'],
-        values: ['craft', 'sellAmmunition', 'backwards'],
+        values: ['craft', 'sellAmmunition', 'samsanCity'],
       },
-      Инженерия: {
+      БИОинженерия: {
         titles: ['найм', 'улучшить', 'разобрать','вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
-        values: ['hireTroops', 'upgradeTroops', 'recycleTroops', 'backwards'],
+        values: ['hireTroops', 'upgradeTroops', 'recycleTroops', 'samsanCity'],
+      },
+      окраина: {
+        titles: ['Сразиться', 'Сбежать'],
+        descriptions: ['Начать бой', 'выйти из боя (выносливось будет потрачена)'],
+        values: ['battle', 'retreat']
       },
     },
   },
