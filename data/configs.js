@@ -40,7 +40,7 @@ const setDifficulty = (val) => {
 
 // difficulty
 const difficultyMessage = 'Выберите сложность';
-const difficultyTitles = ['Легкий', 'Нормальный', 'Сложный'];
+const difficultyTitles = ['👶 Легкий', '👦 Нормальный', '🗿 Сложный'];
 const difficultyValues = ['easy', 'normal', 'hard'];
 const difficultyDescriptions = ['Для слабых людей', 'Очереднярский уровень', 'Самый крутой что ли?'];
 
