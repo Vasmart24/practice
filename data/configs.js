@@ -29,9 +29,14 @@ export let game = {
   isEnded: false,
   name: null,
   difficulty: 'normal',
+  prevPrompt: null,
   player: {
     coins: 100,
   },
+};
+
+export const setPrevPrompt = (val) => {
+  game.prevPrompt = val;
 };
 
 const setDifficulty = (val) => {
@@ -121,11 +126,11 @@ export const configs = {
     return new Prompt(
       'Выберите сложность',
       [...difficultyTitles, 'Назад'],
-      [...difficultyValues, 'settings'],
+      [...difficultyValues, 'back'],
       difficultyDescriptions,
       (val) => {
-        if (val !== 'settings') setDifficulty(val);
-        return 'settings';
+        if (val != 'back') setDifficulty(val);
+        return game.prevPrompt.name;
       }
     );
   },
