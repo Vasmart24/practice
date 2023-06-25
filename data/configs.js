@@ -9,15 +9,6 @@ const troubadour = new Troubadour('sox');
 
 //const troubadour = new Troubadour('sox');
 
-// troubadour.on('start', () => {
-//   console.log('Music is playing...');
-// });
-
-// troubadour.on('end', () => {
-//   console.log('Music stopped...');
-// });
-
-
 const city = cities[player.getPlayerLocation()[0]];console.log(city);
 const building = city.buildingsActions[player.getPlayerLocation()[player.getPlayerLocation().length - 1]]; console.log(building);
 
@@ -34,6 +25,7 @@ const cityDescriptions = city.buildings.descriptions;
 export let game = {
   isEnded: false,
   name: null,
+  difficulty: 'normal',
   player: {
     coins: 100,
   },
@@ -43,11 +35,11 @@ export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
   menu: () => {
-    troubadour.play('sounds/menu.mp3');
+    //troubadour.play('sounds/menu.mp3');
     return new Prompt(
       '☰',
-      ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪟  Выйти'],
-      ['startGame', 'savesList', 'saveGame', 'endGame'],
+      ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪛  Настройки', '🪟  Выйти'],
+      ['samsanCity', 'savesList', 'saveGame', 'settings', 'endGame'],
       [],
       (val) => {
         //troubadour.stop();
@@ -82,16 +74,38 @@ export const configs = {
       name: 'value',
       message: 'Как обзовем тебя, салага? (речь о сохранении)',
       format: async (saveName) => {
-        game.name = saveName;
         save(game, saveName);
         console.log('❗ Сохранение заползло под шконку в saves, начальник');
         return 'menu';
       },
     };
   },
+
+  settings: () => {
+    return new Prompt(
+      '',
+      ['Уровень сложности', 'Назад'],
+      ['difficulty', 'menu'],
+    );
+  },
+
+  difficulty: () => {
+    return new Prompt(
+      'Выберите сложность',
+      ['Легкий', 'Нормальный', 'Сложный', 'Назад'],
+      ['easy', 'normal', 'hard', 'settings'],
+      ['Для слабых людей', 'Очереднярский уровень', 'Самый крутой что ли?'],
+      (val) => {
+        console.log(val);
+        if (val !== 'settings') game.difficulty = val;
+        return 'settings';
+      }
+    );
+  },
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  startGame: () => {
+  // menu -> Новая игра -> samsanCity
+  samsanCity: () => {
     troubadour.play('sounds/birds.wav');
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
     return new Prompt(
@@ -148,12 +162,12 @@ export const configs = {
 //     }
 //   },
 
-//     townhallActions: () => {
-//       console.log('Вы зашли в городскую ратушу.\n');
-//       player.addPlayerLocation('Ратуша');
-//       return new Prompt('Выберите дальнейшее действие: ', 
-//       buildingsTitles, buildingsValues, buildingsDescriptions);
-//     },
+    townhallActions: () => {
+      console.log('Вы зашли в городскую ратушу.\n');
+      player.addPlayerLocation('Ратуша');
+      return new Prompt('Выберите дальнейшее действие: ', 
+      buildingsTitles, buildingsValues, buildingsDescriptions);
+    }
 
 //   tavernActions: {
 //     getPrompt: () => {
