@@ -4,6 +4,7 @@ const firstCityCreeps = {
     hp: 100,
     dmg: '25-35',
     armor: '5%',
+    count: 0,
     loot: [
       { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
@@ -11,11 +12,13 @@ const firstCityCreeps = {
       { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: '' },
     ],
   },
+
   hydralisk: {
     name: 'Hydralisk',
     hp: 75,
     dmg: '30-35',
     armor: '10%',
+    count: 0,
     loot: [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },

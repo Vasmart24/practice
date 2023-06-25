@@ -12,4 +12,4 @@ const makePrompt = async (prompt) => {
   makePrompt(configs[value]);
 };
 
-makePrompt(configs.equipment);
+makePrompt(configs.menu);

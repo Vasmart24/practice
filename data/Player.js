@@ -1,6 +1,6 @@
 export const player = {
   name: 'Ell',
-  currentLocation: ['Самсана', 'Таверна'],
+  currentLocation: 'Самсана',
   army: {},
   inventory: {
     ammunition: [
