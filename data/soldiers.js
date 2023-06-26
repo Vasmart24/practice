@@ -1,41 +1,5 @@
 import prompts from 'prompts';
 
-const heavyMarine = {
-  name: 'тяжёлый пехотинец',
-  type: 'armor',
-  hp: 160,
-  dmg: 25,
-  armor: '70%',
-  cost: 135,
-};
-
-const LightMarine = {
-  name: 'пехотинец',
-  type: 'range',
-  hp: 170,
-  dmg: 30,
-  armor: '30%',
-  cost: 75,
-};
-
-const penetrators = {
-  name: 'плазма-воины',
-  type: 'piercing',
-  hp: 110,
-  dmg: 45,
-  armor: '20%',
-  cost: 115,
-};
-
-const psionics = {
-  name: 'пси-адепты',
-  type: 'psi-shield',
-  hp: 10,
-  dmg: 19,
-  armor: '0%',
-  cost: 240,
-};
-
 const bloodCoins = 600;
 const z = (async () => {
   const heavyMarineCost = heavyMarine.cost;
@@ -75,3 +39,19 @@ const z = (async () => {
   console.log(buyTroops);
 });
 z();
+
+class Unit {
+  constructor(name, type, hp, maxHp, damage, armor, description, count = 1, cost = null) {
+    this.name = name;
+    this.type = type;
+    this.hp = hp;
+    this.maxHp = maxHp;
+    this.damage = damage;
+    this.armor = armor;
+    this.description = description;
+    this.count = count;
+    this.cost = cost;
+  }
+};
+
+export default Unit;
