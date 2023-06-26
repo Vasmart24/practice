@@ -37,7 +37,8 @@ const alliedUnit = {
 // Объект с характеристиками вражеского отряда
 const enemyUnit = {
   name: 'Биофенрикс',
-  hp: '60/100',
+  hp: 60,
+  maxHp: 100,
   dmg: '25-35', 
   armor: '5%',
   count: 5,
@@ -48,39 +49,36 @@ const damageDealt = calculateDamage(alliedUnit);
 
 // Применяем урон к вражескому отряду, учитывая броню
 const effectiveDamage = calculateEffectiveDamage(damageDealt, enemyUnit);
-
+// return [hp, count];
 const killUnit = (unit, damage) => {
-  let count = unit.count;
-  let currentHp = Number(unit.hp.split('/')[0]);
-  const maxHp = Number(unit.hp.split('/')[1]);
-
-  if (!count) {
-    console.log('существо убито!');
-  }
-
-  if (currentHp <= damage) {
-    damage -= currentHp;
-    unit.hp.split('/')[0] = unit.hp.split('/')[1];
+  const hp = unit.hp;
+  console.log(`Хп противника до вычета: ${unit.hp}`);
+  if (!unit.count) console.log(`отряд ${unit.name} повержен!`);
+  if (hp <= damage) {
+    console.log(`урон: ${damage}`);
+    damage -= hp;
+    console.log(`Урон после вычета hp: ${damage}`)
+    unit.hp = unit.maxHp;
     unit.count -= 1;
-    killUnit(unit, damage)
+    console.log(`Хп противника: ${unit.hp}`);
+    killUnit(unit, damage);
   } else {
-    currentHp -= damage;
-    unit.hp = `${currentHp}/${maxHp}`;
+    unit.hp -= damage;
   }
-  
 };
-let enemyHp = Number(enemyUnit.hp.split('/')[0]);
-const maxEnemyHp = Number(enemyUnit.hp.split('/')[1]);
 
 // Проверяем, если урон превышает оставшееся здоровье врага, уменьшаем количество воинов и выводим оставшееся здоровье
-if (effectiveDamage >= enemyHp) {
+if (effectiveDamage >= enemyUnit.hp) {
   killUnit(enemyUnit, effectiveDamage);
+  console.log(enemyUnit);
 } else {
-  enemyUnit.hp = `${enemyHp - effectiveDamage}/${maxEnemyHp}`
+  enemyUnit.hp -= effectiveDamage ;
 }
 
+let enemyHp = enemyUnit.hp;
+const maxEnemyHp = enemyUnit.maxHp;
 // Выводим результат
-console.log(`${alliedUnit.name} наносит урон ${damageDealt}`);
+// console.log(`${alliedUnit.name} наносит урон ${damageDealt}`);
 console.log(`Вражеский отряд ${enemyUnit.name} получает урон ${effectiveDamage}`);
 console.log(`Остаток воинов у ${enemyUnit.name} в отряде: ${enemyUnit.count}`);
 console.log(`Остаток здоровья вражеского отряда: ${enemyHp}`);
