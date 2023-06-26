@@ -4,7 +4,8 @@ class Prompt {
   // values: array
   // description: array
   // format: function (функция для постобработки пользовательского ввода value)
-  constructor(message, titles, values, description = [], format = null) {
+  // disabled: array
+  constructor(message, titles, values, description = [], format = null, disabled = []) {
     this.type = 'select';
     this.name = 'value';
     this.message = message;
@@ -15,6 +16,7 @@ class Prompt {
         title: titles[i],
         description: description[i] ? description[i] : null,
         value: values[i],
+        disabled: disabled[i] ? disabled[i] : null
       });
     }
   }
