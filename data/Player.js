@@ -9,6 +9,7 @@ export const player = {
       },
 
     ],
+    items: [],
   },
   ammunition: [
     {
@@ -33,6 +34,12 @@ export const player = {
   atk: 2,
   armor: 2,
   lvl: 1,
+  currentMission: {
+    name: '',
+    award: [],
+    requirements: player.ammunition[0].equiped
+  },
+  isMissionCompleted: player.currentMission.requirements, 
 
   getPlayerAmmunition() {
     const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);
