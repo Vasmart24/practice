@@ -2,7 +2,6 @@ export const player = {
   name: 'Ell',
   level: 1,
   coins: 150,
-  founds: 150,
   currentLocation: 'Самсана',
   army: [],
   inventory: {
@@ -15,24 +14,12 @@ export const player = {
     items: [],
   },
   ammunition: [
-    {
-      name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true,
-    },
-    {
-      name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
+    { name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true },
+    { name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false },
   ],
   atk: 2,
   armor: 2,

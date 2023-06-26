@@ -66,19 +66,19 @@ const difficultyDescriptions = ['Для слабых людей', 'Очеред�
 //                      КЛАСС СОЛДАТ
 const soldiersArr = [
   new Unit(
-    'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 1, 1, 240, 5
+    'пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5
   ),
   
   new Unit(
-    'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 1, 1, 135, 3
+    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 3
   ),
   
   new Unit(
-    'пехотинец', 'range', 170, 170, '30-40', '30%', 1, 1, 75, 1
+    'пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1
   ),
   
   new Unit(
-    'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 1, 1, 115, 4
+    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 4
   )
 ];
 
@@ -282,18 +282,28 @@ export const configs = {
 
   hireTroops: () => {
     const unitNames = soldiersArr.map((unit) => unit.name);
-    const unitDescriptions = soldiersArr.map((unit) => `${unit.cost} - цена в биомассе`);
     const unitsAvailability = soldiersArr.map((unit) => !isAvailable(player.level, player.coins, unit.requiredLevel, unit.cost));
+    const unitDescriptions = soldiersArr.map((unit) => `  Цена: ${unit.cost}
+    Здоровье юнита:${unit.hp}
+    Броня: ${unit.armor}
+    приблизительный урон: ${unit.damage}`);
+    const armySoldiers = soldiersArr.map((unit) => {
+      return new Unit(unit.name, unit.hp, unit.maxHp, unit.damage, unit.armor, unit.speed, 1, unit.cost);
+    });
+    console.log(armySoldiers);
     return new Prompt(
       'Выберите отряд для найма: ',
       [...unitNames, 'Назад'],
-      [...soldiersArr, 'Back'],
+      [...armySoldiers, 'Back'],
       unitDescriptions,
       (val) => {
         let nextPrompt = game.currentPrompt.name;
         if (val != 'Back') {
-          player.army.push(val);
+          Array.prototype.includes.call(player.army, val.name) ? player.army.push(val) : 
+          player.army[indexOf(val)].count += 1;
+          console.log(player.army);
           player.coins -= val.cost;
+          console.log(player.coins);
         } else {
           nextPrompt = 'engineeringActions';
         }
@@ -302,5 +312,4 @@ export const configs = {
       unitsAvailability
     );
   },
-  
 };
