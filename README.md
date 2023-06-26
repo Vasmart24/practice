@@ -6,13 +6,12 @@ Ubuntu Linux, Node.js V20.2.0, SoX, SoX mp3 handler
 
 SoX installation:
 ```
-sudo apt update
-sudo apt install sox
+sudo apt update && sudo apt install sox
 ```
 
 SoX mp3 handler installation:
 ```
-sudo apt-get install libsox-fmt-mp3
+sudo apt-get install libsox-fmt-all
 ```
 
 ## Installation

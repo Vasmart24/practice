@@ -109,7 +109,7 @@ export const configs = {
       format: async (saveName) => {
         save(game, saveName);
         console.log('❗ Сохранение заползло под шконку в saves, начальник');
-        return 'menu';
+        return game.prevPrompt.name;
       },
     };
   },
@@ -235,7 +235,10 @@ export const configs = {
     return new Prompt('Выберите дальнейшее действие: ',
     city.getSamsanBuilding('окраина', 'titles'),
     city.getSamsanBuilding('окраина', 'values'),
-    city.getSamsanBuilding('окраина', 'descriptions'));
+    city.getSamsanBuilding('окраина', 'descriptions'),
+    (val) => {
+      return val != 'back' ? val : game.prevPrompt.name;
+    });
   },
 };
 

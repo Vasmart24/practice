@@ -5,12 +5,12 @@ import Troubadour from 'troubadour';
 const troubadour = new Troubadour('sox');
 
 const makePrompt = async (prompt) => {
-  //console.clear();
+  console.clear();
   if (game.isEnded) return;
-  const { value } = await prompts(await prompt());
+  let { value } = await prompts(await prompt());
   setPrevPrompt(prompt);
   troubadour.play('sounds/click.wav');
-  makePrompt(configs[value]);
+  makePrompt(value ? configs[value] : prompt);
 };
 
 makePrompt(configs.menu);

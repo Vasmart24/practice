@@ -13,9 +13,9 @@ const cities = {
         values: ['getMainMission', 'completeMainMission', 'samsanCity'],
       },
       Таверна: {
-        titles: ['купить', 'продать', 'отдых', 'Изменить сложность','вернуться'],
+        titles: ['купить', 'продать', 'отдых', 'Изменить сложность', 'вернуться'],
         descriptions: ['купить провиант', 'продать провиант', 'восстановить выносливость и сохраниться', 'Я пахну слабостью', 'Выход в город'],
-        values: ['buy', 'sellItems', 'rest', 'difficulty','samsanCity'],
+        values: ['buy', 'sellItems', 'saveGame', 'difficulty','samsanCity'],
       },
       Рынок: {
         titles: ['создать', 'продать', 'вернуться'],
@@ -30,7 +30,7 @@ const cities = {
       окраина: {
         titles: ['Сразиться', 'Сбежать'],
         descriptions: ['Начать бой', 'выйти из боя (выносливось будет потрачена)'],
-        values: ['battle', 'retreat']
+        values: ['battle', 'back']
       },
     },
   },
