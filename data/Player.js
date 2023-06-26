@@ -4,17 +4,31 @@ export const player = {
   army: [],
   inventory: {
     ammunition: [
-      { name: 'Нейрофрейм', type: 'head', parameters: { atk: 2, armor: 4}, description: 'Атака: 2  Защита: 4'}
-     
+      {
+        name: 'Нейрофрейм', type: 'head', parameters: { atk: 2, armor: 4 }, description: 'Атака: 2  Защита: 4',
+      },
+
     ],
   },
   ammunition: [
-   { name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false},
-   { name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false},
-   { name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false},
-   { name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true},
-   { name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false},
-   { name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false},
+    {
+      name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false,
+    },
+    {
+      name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false,
+    },
+    {
+      name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false,
+    },
+    {
+      name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true,
+    },
+    {
+      name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false,
+    },
+    {
+      name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false,
+    },
   ],
   atk: 2,
   armor: 2,

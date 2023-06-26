@@ -51,34 +51,33 @@ const damageDealt = calculateDamage(alliedUnit);
 const effectiveDamage = calculateEffectiveDamage(damageDealt, enemyUnit);
 // return [hp, count];
 const killUnit = (unit, damage) => {
-  const hp = unit.hp;
   console.log(`Хп противника до вычета: ${unit.hp}`);
+  let { hp } = unit;
   if (!unit.count) console.log(`отряд ${unit.name} повержен!`);
   if (hp <= damage) {
     console.log(`урон: ${damage}`);
     damage -= hp;
     console.log(`Урон после вычета hp: ${damage}`)
-    unit.hp = unit.maxHp;
+    hp = unit.maxHp;
     unit.count -= 1;
-    console.log(`Хп противника: ${unit.hp}`);
+    console.log(`Хп противника: ${hp}`);
     killUnit(unit, damage);
   } else {
-    unit.hp -= damage;
+    hp -= damage;
   }
 };
 
-// Проверяем, если урон превышает оставшееся здоровье врага, уменьшаем количество воинов и выводим оставшееся здоровье
+// Проверяем, если урон превышает оставшееся здоровье врага, 
+// уменьшаем количество воинов и выводим оставшееся здоровье
 if (effectiveDamage >= enemyUnit.hp) {
   killUnit(enemyUnit, effectiveDamage);
   console.log(enemyUnit);
 } else {
-  enemyUnit.hp -= effectiveDamage ;
+  enemyUnit.hp -= effectiveDamage;
 }
 
-let enemyHp = enemyUnit.hp;
-const maxEnemyHp = enemyUnit.maxHp;
-// Выводим результат
-// console.log(`${alliedUnit.name} наносит урон ${damageDealt}`);
+const enemyHp = enemyUnit.hp;
+
 console.log(`Вражеский отряд ${enemyUnit.name} получает урон ${effectiveDamage}`);
 console.log(`Остаток воинов у ${enemyUnit.name} в отряде: ${enemyUnit.count}`);
 console.log(`Остаток здоровья вражеского отряда: ${enemyHp}`);

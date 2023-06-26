@@ -1,6 +1,6 @@
 const cities = {
   Самсана: {
-    getSamsanBuilding (building, prop) {return this.buildingsActions[building][prop]},
+    getSamsanBuilding(building, prop) { return this.buildingsActions[building][prop]; },
     buildings: {
       titles: ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии', 'Окраина'],
       descriptions: ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск', 'выйти за город'],
@@ -15,7 +15,7 @@ const cities = {
       Таверна: {
         titles: ['купить', 'продать', 'отдых', 'Изменить сложность', 'вернуться'],
         descriptions: ['купить провиант', 'продать провиант', 'восстановить выносливость и сохраниться', 'Я пахну слабостью', 'Выход в город'],
-        values: ['buy', 'sellItems', 'saveGame', 'difficulty','samsanCity'],
+        values: ['buy', 'sellItems', 'saveGame', 'difficulty', 'samsanCity'],
       },
       Рынок: {
         titles: ['создать', 'продать', 'вернуться'],
@@ -23,14 +23,14 @@ const cities = {
         values: ['craft', 'sellAmmunition', 'samsanCity'],
       },
       БИОинженерия: {
-        titles: ['найм', 'улучшить', 'разобрать','вернуться'],
+        titles: ['найм', 'улучшить', 'разобрать', 'вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
         values: ['hireTroops', 'upgradeTroops', 'recycleTroops', 'samsanCity'],
       },
       окраина: {
         titles: ['Сразиться', 'Сбежать'],
         descriptions: ['Начать бой', 'выйти из боя (выносливось будет потрачена)'],
-        values: ['battle', 'back']
+        values: ['battle', 'back'],
       },
     },
   },
@@ -53,7 +53,7 @@ const cities = {
         values: ['buy', 'sellItems', 'rest', 'backwards'],
       },
       Казармы: {
-        titles: ['найм', 'улучшить', 'разобрать','вернуться'],
+        titles: ['найм', 'улучшить', 'разобрать', 'вернуться'],
         descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
         values: ['hireTroops', 'upgradeTroops', 'recycleTroops', 'backwards'],
       },

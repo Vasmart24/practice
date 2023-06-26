@@ -20,9 +20,4 @@ class Prompt {
   }
 }
 
-// const myPrompt = new Prompt('city', ['Ратуша', 'Таверна', 'Рынок', 'Центр Инженерии', 'Госпиталь'],
-// ['townhallActions', 'tavernActions', 'marketActions', 'engineerActions', 'hospitalActions'],
-// ['главное здание города', 'место отдыха и закупки провизией', 'купить аммуницию', 'найм и улучшение войск', 'лечение войск']
-// )
-
 export default Prompt;

@@ -1,14 +1,14 @@
+import Troubadour from 'troubadour';
 import { save, load, getSaves } from '../src/save.js';
 import { player } from './Player.js';
 import cities from './Cities.js';
 import Prompt from './Prompt.js';
-import Troubadour from 'troubadour';
 import equip from './equipment.js';
 import Unit from './soldiers.js';
 
 const troubadour = new Troubadour('sox');
 
-//const troubadour = new Troubadour('sox');
+// const troubadour = new Troubadour('sox');
 
 // troubadour.on('start', () => {
 //   console.log('Music is playing...');
@@ -17,7 +17,6 @@ const troubadour = new Troubadour('sox');
 // troubadour.on('end', () => {
 //   console.log('Music stopped...');
 // });
-
 
 const city = cities[player.getPlayerLocation()];
 
@@ -54,34 +53,31 @@ export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  menu: () => {
-    //troubadour.play('sounds/menu.mp3');
-    return new Prompt(
+  menu: () =>
+    // troubadour.play('sounds/menu.mp3');
+    new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪛  Настройки', '🪟  Выйти'],
       ['initGame', 'savesList', 'saveGame', 'settings', 'endGame'],
       [],
       (val) => {
-        //troubadour.stop();
+        // troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
         console.clear();
         return val;
       },
-    );
-  },
+    ),
 
-  initGame: () => {
-    return new Prompt(
-      difficultyMessage,
-      difficultyTitles,
-      difficultyValues,
-      difficultyDescriptions,
-      (val) => {
-        setDifficulty(val);
-        return 'samsanCity';
-      }
-    );
-  },
+  initGame: () => new Prompt(
+    difficultyMessage,
+    difficultyTitles,
+    difficultyValues,
+    difficultyDescriptions,
+    (val) => {
+      setDifficulty(val);
+      return 'samsanCity';
+    },
+  ),
 
   savesList: async () => {
     const saves = await getSaves();
@@ -115,26 +111,22 @@ export const configs = {
     };
   },
 
-  settings: () => {
-    return new Prompt(
-      '',
-      ['Уровень сложности', 'Назад'],
-      ['difficulty', 'menu'],
-    );
-  },
+  settings: () => new Prompt(
+    '',
+    ['Уровень сложности', 'Назад'],
+    ['difficulty', 'menu'],
+  ),
 
-  difficulty: () => {
-    return new Prompt(
-      'Выберите сложность',
-      [...difficultyTitles, 'Назад'],
-      [...difficultyValues, 'back'],
-      difficultyDescriptions,
-      (val) => {
-        if (val != 'back') setDifficulty(val);
-        return game.prevPrompt.name;
-      }
-    );
-  },
+  difficulty: () => new Prompt(
+    'Выберите сложность',
+    [...difficultyTitles, 'Назад'],
+    [...difficultyValues, 'back'],
+    difficultyDescriptions,
+    (val) => {
+      if (val != 'back') setDifficulty(val);
+      return game.prevPrompt.name;
+    },
+  ),
 
   samsanCity: () => {
     troubadour.play('sounds/birds.wav');
@@ -146,17 +138,15 @@ export const configs = {
       cityDescriptions,
     );
   },
-  
+
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ЭКИПИРОВКИ ПРЕДМЕТОВ ----------
 
-  equipment: () => {
-    return new Prompt(
-      'Выбери действие',
-      ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
-      ['equip', 'unequip','backwards'],
-      ['Выбрать снаряжение из инвентаря','Снять надетое снаряжение','Вернутся в город'],
-    );
-  },
+  equipment: () => new Prompt(
+    'Выбери действие',
+    ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
+    ['equip', 'unequip', 'backwards'],
+    ['Выбрать снаряжение из инвентаря', 'Снять надетое снаряжение', 'Вернутся в город'],
+  ),
 
   equip: () => {
     const titles = equip.getAmmunitionName(player);
@@ -175,18 +165,18 @@ export const configs = {
   },
 
   unequip: () => {
-      const titles = equip.getEquipAmunitionName(player);
-      const values = equip.getEquipAmmunitionType(player);
-      const description = equip.getEquipAmmunitionDescription(player);
+    const titles = equip.getEquipAmunitionName(player);
+    const values = equip.getEquipAmmunitionType(player);
+    const description = equip.getEquipAmmunitionDescription(player);
     return new Prompt(
       'Выбери снаряжени',
       [...titles.flat()],
       [...values.flat()],
-      [...description.flat()]
+      [...description.flat()],
     );
   },
 
-    // ---------- ПРОМПТЫ ДЛЯ ДЕЙСТВИЙ В ГОРОДЕ ----------
+  // ---------- ПРОМПТЫ ДЛЯ ДЕЙСТВИЙ В ГОРОДЕ ----------
 
   samsanCity: () => {
     troubadour.play('sounds/birds.wav');
@@ -201,63 +191,62 @@ export const configs = {
 
   townhallActions: () => {
     console.log('Вы зашли в городскую ратушу.\n');
-    return new Prompt('Выберите дальнейшее действие: ', 
-    city.getSamsanBuilding('Ратуша', 'titles'),
-    city.getSamsanBuilding('Ратуша', 'values'),
-    city.getSamsanBuilding('Ратуша', 'descriptions'));
+    return new Prompt(
+      'Выберите дальнейшее действие: ',
+      city.getSamsanBuilding('Ратуша', 'titles'),
+      city.getSamsanBuilding('Ратуша', 'values'),
+      city.getSamsanBuilding('Ратуша', 'descriptions'),
+    );
   },
 
   tavernActions: () => {
     console.log('Вы зашли в таверну.\n');
-    return new Prompt('Выберите дальнейшее действие: ', 
-    city.getSamsanBuilding('Таверна', 'titles'),
-    city.getSamsanBuilding('Таверна', 'values'),
-    city.getSamsanBuilding('Таверна', 'descriptions'));
+    return new Prompt(
+      'Выберите дальнейшее действие: ',
+      city.getSamsanBuilding('Таверна', 'titles'),
+      city.getSamsanBuilding('Таверна', 'values'),
+      city.getSamsanBuilding('Таверна', 'descriptions'),
+    );
   },
 
   marketActions: () => {
     console.log('Вы попали на рынок.\n');
-    return new Prompt('Выберите дальнейшее действие: ', 
-    city.getSamsanBuilding('Рынок', 'titles'),
-    city.getSamsanBuilding('Рынок', 'values'),
-    city.getSamsanBuilding('Рынок', 'descriptions'));
+    return new Prompt(
+      'Выберите дальнейшее действие: ',
+      city.getSamsanBuilding('Рынок', 'titles'),
+      city.getSamsanBuilding('Рынок', 'values'),
+      city.getSamsanBuilding('Рынок', 'descriptions'),
+    );
   },
 
   engineeringActions: () => {
-      console.log('Вы зашли в центр БИОинженерии.\n');
-      return new Prompt('Выберите дальнейшее действие: ', 
+    console.log('Вы зашли в центр БИОинженерии.\n');
+    return new Prompt(
+      'Выберите дальнейшее действие: ',
       city.getSamsanBuilding('БИОинженерия', 'titles'),
       city.getSamsanBuilding('БИОинженерия', 'values'),
-      city.getSamsanBuilding('БИОинженерия', 'descriptions'));
+      city.getSamsanBuilding('БИОинженерия', 'descriptions'),
+    );
   },
 
   samsanBattleActions: () => {
     console.log('Вы вышли в окраину города.\n');
-    return new Prompt('Выберите дальнейшее действие: ',
-    city.getSamsanBuilding('окраина', 'titles'),
-    city.getSamsanBuilding('окраина', 'values'),
-    city.getSamsanBuilding('окраина', 'descriptions'),
-    (val) => {
-      return val != 'back' ? val : game.prevPrompt.name;
-    });
+    return new Prompt(
+      'Выберите дальнейшее действие: ',
+      city.getSamsanBuilding('окраина', 'titles'),
+      city.getSamsanBuilding('окраина', 'values'),
+      city.getSamsanBuilding('окраина', 'descriptions'),
+      (val) => (val != 'back' ? val : game.prevPrompt.name),
+    );
   },
   //                      КЛАСС СОЛДАТ
   soldiersArr: [
-    psionics = new Unit(
-      'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1, 240
-    ),
-    
-    heavyMarine = new Unit(
-      'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 135
-    ),
-    
-    LightMarine = new Unit(
-      'пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 75
-    ),
-    
-    penetrators = new Unit(
-      'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 115
-    ),
-  ]
-};
+    new Unit('пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1, 240),
 
+    new Unit('тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 135),
+
+    new Unit('пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 75),
+
+    new Unit('плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 115),
+  ],
+};
