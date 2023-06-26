@@ -30,14 +30,20 @@ export let game = {
   name: null,
   difficulty: 'normal',
   prevPrompt: null,
+  currentPrompt: null,
+  player
+  /*
   player: {
+    level: 1,
     coins: 100,
   },
+  */
 };
 
-export const setPrevPrompt = (val) => {
-  game.prevPrompt = val;
-};
+export const setPrevPrompt = (val) => game.prevPrompt = val;
+
+export const setСurrentPrompt = (val) => game.currentPrompt = val;
+
 
 const setDifficulty = (val) => {
   game.difficulty = val;
@@ -48,6 +54,29 @@ const difficultyMessage = 'Выберите сложность';
 const difficultyTitles = ['👶 Легкий', '👦 Нормальный', '🗿 Сложный'];
 const difficultyValues = ['easy', 'normal', 'hard'];
 const difficultyDescriptions = ['Для слабых людей', 'Очереднярский уровень', 'Самый крутой что ли?'];
+
+//                      КЛАСС СОЛДАТ
+const soldiersArr = [
+  new Unit(
+    'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 1, 1, 240, 5
+  ),
+  
+  new Unit(
+    'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 1, 1, 135, 3
+  ),
+  
+  new Unit(
+    'пехотинец', 'range', 170, 170, '30-40', '30%', 1, 1, 75, 1
+  ),
+  
+  new Unit(
+    'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 1, 1, 115, 4
+  )
+];
+
+const isAvailable = (playerLevel, playerCoins, requiredLevel, requiredCoins) => {
+  return (playerLevel >= requiredLevel) && (playerCoins >= requiredCoins);
+};
 
 export const configs = {
 
@@ -240,23 +269,27 @@ export const configs = {
     );
   },
 
-  //                      КЛАСС СОЛДАТ
-
-  soldiersArr: [
-    new Unit(
-      'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1,  1, 240
-    ),
-    
-    new Unit(
-      'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 1, 135
-    ),
-    
-    new Unit(
-      'пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 1, 75
-    ),
-    
-    new Unit(
-      'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 1, 115
-    ),
-   ]
+  hireTroops: () => {
+    const unitNames = soldiersArr.map((unit) => unit.name);
+    const unitDescriptions = soldiersArr.map((unit) => `${unit.cost} - цена в биомассе`);
+    const unitsAvailability = soldiersArr.map((unit) => !isAvailable(player.level, player.coins, unit.requiredLevel, unit.cost));
+    return new Prompt(
+      'Выберите отряд для найма: ',
+      [...unitNames, 'Назад'],
+      [...soldiersArr, 'Back'],
+      unitDescriptions,
+      (val) => {
+        let nextPrompt = game.currentPrompt.name;
+        if (val != 'Back') {
+          player.army.push(val);
+          player.coins -= val.cost;
+        } else {
+          nextPrompt = 'engineeringActions';
+        }
+        return nextPrompt;
+      },
+      unitsAvailability
+    );
+  },
+  
 };

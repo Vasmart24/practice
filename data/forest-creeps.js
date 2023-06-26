@@ -18,10 +18,10 @@ const firstCityCreeps = {
     '23-37', '5%',
     'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
     1, 1, [
-      { title: 'basic shard', description: 'Ингридиент для крафта', value: '' },
-      { title: 'biomass', description: 'Местная валюта', value: '' },
-      { title: 'fang', description: 'Можно переработать в биомассу', value: '' },
-      { title: 'meat', description: 'Можно переработать в большое кол-во биомассы', value: '' },
+      { name: 'базовый кристалл', description: 'Ингридиент для крафта', value: '' },
+      { name: 'biomass', description: 'Местная валюта', value: '' },
+      { name: 'fang', description: 'Можно переработать в биомассу', value: '' },
+      { name: 'meat', description: 'Можно переработать в большое кол-во биомассы', value: '' },
     ],
   ),
 
@@ -29,10 +29,10 @@ const firstCityCreeps = {
     'Гидралиск', 1150, 1150, '43-53', '15%',
     '',
     1, 1, [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
-      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
+      { name: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
+      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { name: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
+      { name: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
     ],
   ),
 
@@ -41,9 +41,9 @@ const firstCityCreeps = {
     55, 55, '15-18', '33%',
     '',
     1, 1, [
-      { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' },
+      { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
+      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { name: 'bones', description: 'Can be sold.', value: '' },
     ],
   ),
 
@@ -52,9 +52,9 @@ const firstCityCreeps = {
     110, 110, '20-30', '8%',
     '',
     1, 1, [
-      { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' },
+      { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
+      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { name: 'bones', description: 'Can be sold.', value: '' },
     ],
   )
 };

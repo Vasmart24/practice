@@ -1,6 +1,7 @@
 export const player = {
   name: 'Ell',
-  founds: 150,
+  level: 1,
+  coins: 150,
   currentLocation: 'Самсана',
   army: [],
   inventory: {
@@ -26,9 +27,9 @@ export const player = {
   currentMission: {
     name: '',
     award: [],
-    requirements: []
+    requirements: []//player.ammunition[0].equiped
   },
-  isMissionCompleted: true, 
+  isMissionCompleted: true,//player.currentMission.requirements, 
 
   getPlayerAmmunition() {
     const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);
