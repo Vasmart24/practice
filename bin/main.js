@@ -6,7 +6,7 @@ const troubadour = new Troubadour('sox');
 
 const makePrompt = async (prompt) => {
   setСurrentPrompt(prompt);
-  console.clear();
+  // console.clear();
   if (game.isEnded) return;
   const { value } = await prompts(await prompt());
   setPrevPrompt(prompt);
