@@ -1,65 +1,77 @@
-const firstCityCreeps = {
-  Биофенрикс: {
-    name: 'Биофенрикс',
-    type: '',
-    hp: 100,
-    dmg: '25-35',
-    armor: '5%',
-    count: 0,
-    loot: [
-      { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'fang', description: 'Can be sold.', value: '' },
-      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: '' },
-    ],
-  },
+class creep {
+  constructor(name, hp, maxHp, damage, armor, description = '', speed = 1, count = 1, loot = []) {
+    this.name = name;
+    this.hp = hp;
+    this.maxHp = maxHp;
+    this.damage = damage;
+    this.armor = armor;
+    this.description = description;
+    this.speed = speed;
+    this.count = count;
+    this.loot = loot;
+  }
+};
 
-  Гидралиск: {
-    name: 'Гидралиск',
-    type: '',
-    hp: 1150,
-    dmg: '30-35',
-    armor: '15%',
-    count: 1,
-    loot: [
+const firstCityCreeps = {
+  Биофенрикс: new creep (
+    'Биофенрикс', 100, 100,
+    '23-37', '5%',
+    'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
+    1, 1, [
+      { title: 'basic shard', description: 'Ингридиент для крафта', value: '' },
+      { title: 'biomass', description: 'Местная валюта', value: '' },
+      { title: 'fang', description: 'Можно переработать в биомассу', value: '' },
+      { title: 'meat', description: 'Можно переработать в большое кол-во биомассы', value: '' },
+    ],
+  ),
+
+  Гидралиск: new creep (
+    'Гидралиск', 1150, 1150, '43-53', '15%',
+    '',
+    1, 1, [
       { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
       { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
       { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
     ],
-  },
+  ),
 
-  // B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
-
-  Острагаар: {
-    name: 'Острагаар',
-    type: 'armor',
-    hp: 55,
-    dmg: '10-15',
-    armor: '25%',
-    count: 0,
-    loot: [
+  Острагаар: new creep (
+    'Острагаар',
+    55, 55, '15-18', '33%',
+    '',
+    1, 1, [
       { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
       { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
       { title: 'bones', description: 'Can be sold.', value: '' },
     ],
-  },
-  Коралиозверь: {
-    name: 'Коралиозверь',
-    type: 'range',
-    hp: 110,
-    dmg: '20-30',
-    armor: '8%',
-    count: 0,
-  },
+  ),
+
+  Коралиозверь: new creep (
+    'Коралиозверь', 
+    110, 110, '20-30', '8%',
+    '',
+    1, 1, [
+      { title: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
+      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+      { title: 'bones', description: 'Can be sold.', value: '' },
+    ],
+  )
 };
+//   {
+//     name: 'Коралиозверь',
+//     type: 'range',
+//     hp: 110,
+//     dmg: '20-30',
+//     armor: '8%',
+//     count: 0,
+//   },
+// };
+
+// B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
 
 //   'Есть четыре типа кристаллов: базовые, продвинутые, промежуточные и королевские.\n';
 // 'Эти кристаллы можно использовать для улучшения своих войск, их можно обменять на биомассу, а также продать по хорошей цене.'
-// для нерусов
-// 'There are four types of crystals: basic, advanced, intermediate and royal.\n';
-// 'These crystals can be used to upgrade your troops, they can be exchanged for biomass, and they can also be sold for a good price.';
-
 const secondCityCreeps = {
   bioSpire: {
     name: 'Bio spire',

@@ -239,22 +239,24 @@ export const configs = {
       (val) => (val != 'back' ? val : game.prevPrompt.name),
     );
   },
+
   //                      КЛАСС СОЛДАТ
+
   soldiersArr: [
     new Unit(
-      'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1, 240
+      'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1,  1, 240
     ),
     
     new Unit(
-      'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 135
+      'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 1, 135
     ),
     
     new Unit(
-      'пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 75
+      'пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 1, 75
     ),
     
     new Unit(
-      'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 115
+      'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 1, 115
     ),
-  1]
+   ]
 };

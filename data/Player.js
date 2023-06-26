@@ -1,5 +1,6 @@
 export const player = {
   name: 'Ell',
+  founds: 150,
   currentLocation: 'Самсана',
   army: [],
   inventory: {
@@ -12,24 +13,12 @@ export const player = {
     items: [],
   },
   ammunition: [
-    {
-      name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true,
-    },
-    {
-      name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
-    {
-      name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false,
-    },
+    { name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true },
+    { name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false },
+    { name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false },
   ],
   atk: 2,
   armor: 2,
@@ -37,9 +26,9 @@ export const player = {
   currentMission: {
     name: '',
     award: [],
-    requirements: player.ammunition[0].equiped
+    requirements: []
   },
-  isMissionCompleted: player.currentMission.requirements, 
+  isMissionCompleted: true, 
 
   getPlayerAmmunition() {
     const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);
