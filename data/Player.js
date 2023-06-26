@@ -7,6 +7,7 @@ export const player = {
       { name: 'Нейрофрейм', type: 'head', parameters: { atk: 2, armor: 4}, description: 'Атака: 2  Защита: 4'}
      
     ],
+    items: [],
   },
   ammunition: [
    { name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false},
@@ -19,6 +20,12 @@ export const player = {
   atk: 2,
   armor: 2,
   lvl: 1,
+  currentMission: {
+    name: '',
+    award: [],
+    requirements: player.ammunition[0].equiped
+  },
+  isMissionCompleted: player.currentMission.requirements, 
 
   getPlayerAmmunition() {
     const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);

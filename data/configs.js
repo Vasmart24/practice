@@ -243,19 +243,19 @@ export const configs = {
   },
   //                      КЛАСС СОЛДАТ
   soldiersArr: [
-    psionics = new Unit(
+    new Unit(
       'пси-адепты', 'psi-shield', 10, 10, '25-30', '99.98%', 'description', 1, 240
     ),
     
-    heavyMarine = new Unit(
+    new Unit(
       'тяжелый пехотинец', 'armor', 160, 160, '25-35', '70%', 'description', 1, 135
     ),
     
-    LightMarine = new Unit(
+    new Unit(
       'пехотинец', 'range', 170, 170, '30-40', '30%', 'description', 1, 75
     ),
     
-    penetrators = new Unit(
+    new Unit(
       'плазма-воины', 'piercing', 110, 110, '45-50', '20%', 'description', 1, 115
     ),
   ]
