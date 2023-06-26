@@ -29,8 +29,9 @@ export let game = {
   isEnded: false,
   name: null,
   difficulty: 'normal',
+  promptsStack: ['menu'],
   prevPrompt: null,
-  currentPrompt: null,
+  currPrompt: 'menu',
   player
   /*
   player: {
@@ -40,9 +41,16 @@ export let game = {
   */
 };
 
-export const setPrevPrompt = (val) => game.prevPrompt = val;
+export const updatePromptsStack = (prompt) => {
+  if (prompt) game.promptsStack.push(prompt);
+  else game.promptsStack.pop();
+  updatePrevPrompt();
+  updateСurrPrompt();
+};
 
-export const setСurrentPrompt = (val) => game.currentPrompt = val;
+export const updatePrevPrompt = () => game.prevPrompt = game.promptsStack[game.promptsStack.length - 2];
+
+export const updateСurrPrompt = () => game.currPrompt = game.promptsStack[game.promptsStack.length - 1];
 
 
 const setDifficulty = (val) => {
@@ -143,7 +151,7 @@ export const configs = {
   settings: () => new Prompt(
     '',
     ['Уровень сложности', 'Назад'],
-    ['difficulty', 'menu'],
+    ['difficulty', 'back'],
   ),
 
   difficulty: () => new Prompt(
@@ -151,9 +159,12 @@ export const configs = {
     [...difficultyTitles, 'Назад'],
     [...difficultyValues, 'back'],
     difficultyDescriptions,
-    (val) => {
-      if (val != 'back') setDifficulty(val);
-      return game.prevPrompt.name;
+    (nextPrompt) => {
+      if (nextPrompt != 'back') {
+        setDifficulty(val);
+        nextPrompt = game.currPrompt;
+      }
+      return nextPrompt;
     },
   ),
 
