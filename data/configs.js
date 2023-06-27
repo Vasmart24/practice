@@ -11,11 +11,6 @@ import { titles } from './ammunition.js';
 //import { creeps as enemy } from "./forest-creeps.js"
 import initiateBattle from './battle.js';
 
-
-//import { creeps as enemy } from "./forest-creeps.js"
-import initiateBattle from './battle.js';
-
-
 const troubadour = new Troubadour('sox');
 
 
