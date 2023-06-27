@@ -100,7 +100,6 @@ export const configs = {
       (val) => {
         // troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
-        console.clear();
         return val;
       },
     ),
@@ -120,16 +119,14 @@ export const configs = {
     const saves = await getSaves();
     const titles = [...saves];
     const values = [...saves];
-    titles.push('Назад');
     return new Prompt(
       'Выберите сохранение',
-      titles,
-      values,
+      [...titles, 'Назад'],
+      [...values, 'back'],
       [],
-      async (saveName) => {
-        if (!saveName) return 'menu';
-        game = await load(saveName);
-        return 'startGame';
+      async (val) => {
+        if (val != 'back') game = await load(saveName);
+        return 'back';
       },
     );
   },
