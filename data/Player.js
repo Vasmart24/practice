@@ -21,7 +21,7 @@ export const player = {
     { name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false },
     { name: '6', type: 'ring', parameters: { atk: 0, armor: 0 }, equiped: false },
   ],
-  atk: 2,
+  atk: 1000,
   armor: 2,
   lvl: 1,
   currentMission: {

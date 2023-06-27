@@ -7,15 +7,16 @@ const troubadour = new Troubadour('sox');
 const makePrompt = async (prompt) => {
   //console.clear();
   if (game.isEnded) return;
+  console.log(game.promptsStack)
   let { nextPrompt } = await prompts(await prompt());
-  
+
   if (!nextPrompt) {
     nextPrompt = game.currPrompt;
-  } else if (nextPrompt === 'back') {
+  } else if (nextPrompt != 'back') {
+    updatePromptsStack(nextPrompt);
+  } else {
     nextPrompt = game.prevPrompt;
     updatePromptsStack();
-  } else {
-    updatePromptsStack(nextPrompt);
   }
 
   troubadour.play('sounds/click.wav');

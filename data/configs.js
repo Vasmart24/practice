@@ -6,17 +6,11 @@ import Prompt from './Prompt.js';
 import equip from './equipment.js';
 import Unit from './soldiers.js';
 
+//import { creeps as enemy } from "./forest-creeps.js"
+import initiateBattle from './battle.js';
+
+
 const troubadour = new Troubadour('sox');
-
-// const troubadour = new Troubadour('sox');
-
-// troubadour.on('start', () => {
-//   console.log('Music is playing...');
-// });
-
-// troubadour.on('end', () => {
-//   console.log('Music stopped...');
-// });
 
 const city = cities[player.getPlayerLocation()];
 
@@ -32,13 +26,8 @@ export let game = {
   promptsStack: ['menu'],
   prevPrompt: null,
   currPrompt: 'menu',
+  currBattle: null,
   player
-  /*
-  player: {
-    level: 1,
-    coins: 100,
-  },
-  */
 };
 
 export const updatePromptsStack = (prompt) => {
@@ -51,7 +40,6 @@ export const updatePromptsStack = (prompt) => {
 export const updatePrevPrompt = () => game.prevPrompt = game.promptsStack[game.promptsStack.length - 2];
 
 export const updateСurrPrompt = () => game.currPrompt = game.promptsStack[game.promptsStack.length - 1];
-
 
 const setDifficulty = (val) => {
   game.difficulty = val;
@@ -268,12 +256,43 @@ export const configs = {
 
   samsanBattleActions: () => {
     console.log('Вы вышли в окраину города.\n');
+
+    const enemies = initiateBattle(game);
+    console.log(game.currBattle);
+
     return new Prompt(
       'Выберите дальнейшее действие: ',
       city.getSamsanBuilding('окраина', 'titles'),
       city.getSamsanBuilding('окраина', 'values'),
       city.getSamsanBuilding('окраина', 'descriptions'),
-      (val) => (val != 'back' ? val : game.prevPrompt.name),
+      (val) => {
+        if (val === 'battle') game.currBattle = enemies;
+        return val;
+      }
+    );
+  },
+
+  battle: () => {
+    const enemiesNames = game.currBattle.map((enemy) => enemy.name);
+    const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
+
+    return new Prompt(
+      'Your turn: ',
+      enemiesNames,
+      game.currBattle,
+      enemiesDesriptions,
+      (enemy) => {
+        enemy.hp -= game.player.atk;
+
+        if (enemy.hp <= 0) {
+          troubadour.play('sounds/onKill.mp3');
+          game.currBattle = game.currBattle.filter((enemy) => enemy.hp > 0); // update currBattle
+          if (game.currBattle.length === 0) {
+            console.log('Ты победил!!!!!!');
+            return 'back';
+          }
+        }
+      }
     );
   },
 
@@ -288,8 +307,8 @@ export const configs = {
       [...soldiersArr, 'Back'],
       unitDescriptions,
       (val) => {
-        let nextPrompt = game.currentPrompt.name;
         if (val != 'Back') {
+          nextPrompt = game.currPrompt;
           const unit = player.army.find((unit) => unit.name === val.name);
           if (unit) {
             // Если отряд уже существует, увеличиваем количество на 1
@@ -308,8 +327,6 @@ export const configs = {
           player.coins -= val.cost;
           console.log(`Отряды игрока: ${player.army.map((unit) => ` ${unit.name} (${unit.count})`)}`);
           console.log(`Остаток монет: ${player.coins}`);
-        } else {
-          nextPrompt = 'engineeringActions';
         }
         return nextPrompt;
       },
