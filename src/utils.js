@@ -5,7 +5,7 @@ const getRandomValue = (min, max) => {
 };
 
 // Функция для вычисления урона, наносимого войском
-const calculateDamage = (unit) => {
+export const calculateDamage = (unit) => {
   // Разбиваем строку мин-макс на отдельные значения
   const [minDamage, maxDamage] = unit.dmg.split('-');
   // это необходимо для более рандомного значения урона
@@ -18,7 +18,7 @@ const calculateDamage = (unit) => {
 };
 
 // Функция для вычисления нанесённого урона с учётом брони
-const calculateEffectiveDamage = (damage, enemy) => {
+export const calculateEffectiveDamage = (damage, enemy) => {
   // из параметра брони убираем процент и преобразуем строку в число 
   const armor = Number(enemy.armor.slice(0, -1));
   const effectiveDamage = damage * (100 - armor) / 100;
@@ -29,9 +29,9 @@ const calculateEffectiveDamage = (damage, enemy) => {
 const alliedUnit = {
   name: 'Тяжёлый пехотинец',
   hp: 160,
-  dmg: '10-10',
+  dmg: '25-35',
   armor: '70%',
-  count: 42.5,
+  count: 10,
 };
 
 // Объект с характеристиками вражеского отряда
@@ -40,7 +40,7 @@ const enemyUnit = {
   hp: 32,
   maxHp: 100,
   dmg: '25-35', 
-  armor: '99.9%',
+  armor: '5%',
   count: 5,
 };
 
@@ -50,7 +50,7 @@ const damageDealt = calculateDamage(alliedUnit);
 // Применяем урон к вражескому отряду, учитывая броню
 const effectiveDamage = calculateEffectiveDamage(damageDealt, enemyUnit);
 
-const killUnit = (unit, damage) => {
+export const killUnit = (unit, damage) => {
   console.log(`Хп противника до вычета: ${unit.hp}`);
   if (!unit.count) console.log(`отряд ${unit.name} повержен!`);
   if (unit.hp <= damage) {

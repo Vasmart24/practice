@@ -1,7 +1,7 @@
 export const player = {
   name: 'Ell',
-  level: 1,
-  coins: 150,
+  level: 3,
+  coins: 350,
   currentLocation: 'Самсана',
   army: [],
   inventory: {
