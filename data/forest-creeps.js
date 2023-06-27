@@ -10,17 +10,17 @@ class creep {
     this.count = count;
     this.loot = loot;
   }
-};
+}
 export const creeps = {
   firstCityCreeps: [
-    new creep (
+    new creep(
       'Биофенрикс', 100, 100,
       '23-37', '5%',
       'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
-      1, 1
+      1, 1,
     ),
 
-    new creep (
+    new creep(
       'Гидралиск', 1150, 1150, '43-53', '15%',
       '',
       1, 1, [
@@ -31,7 +31,7 @@ export const creeps = {
       ],
     ),
 
-    new creep (
+    new creep(
       'Острагаар',
       55, 55, '15-18', '33%',
       '',
@@ -42,8 +42,8 @@ export const creeps = {
       ],
     ),
 
-    new creep (
-      'Коралиозверь', 
+    new creep(
+      'Коралиозверь',
       110, 110, '20-30', '8%',
       '',
       1, 1, [
@@ -51,9 +51,9 @@ export const creeps = {
         { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
         { name: 'bones', description: 'Can be sold.', value: '' },
       ],
-    )
-  ]
-}
+    ),
+  ],
+};
 // B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
 
 //   'Есть четыре типа кристаллов: базовые, продвинутые, промежуточные и королевские.\n';
