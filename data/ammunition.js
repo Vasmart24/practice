@@ -149,5 +149,3 @@ ammunitionArray.forEach((equipment) => {
 });
 
 export const titles = ammunitionArray.map((ammunition)=> Object.keys(ammunition)).flat();
-
-console.log(titles);

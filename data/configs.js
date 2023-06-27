@@ -10,6 +10,9 @@ import { titles } from './ammunition.js';
 
 const troubadour = new Troubadour('sox');
 
+
+const helmetsCategory = ['penis','penis','penis'];
+const shop = {helmets: {helmetsCategory, hui: false}}
 // const troubadour = new Troubadour('sox');
 
 // troubadour.on('start', () => {
@@ -259,11 +262,14 @@ export const configs = {
   },
 
   craft: () => {
+
     return new Prompt(
       'Выберите тип снаряжения',
       [...titles, 'назад'],
-      [...titles, 'back'],
-      
+      [...         'back'],[],
+      (val)=> {
+        return val;
+      }
     )
   },
 
