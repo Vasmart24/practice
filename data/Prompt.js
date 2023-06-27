@@ -7,7 +7,7 @@ class Prompt {
   // disabled: array
   constructor(message, titles, values, description = [], format = null, disabled = []) {
     this.type = 'select';
-    this.name = 'value';
+    this.name = 'nextPrompt';
     this.message = message;
     this.format = format;
     this.choices = [];
