@@ -11,59 +11,53 @@ class creep {
     this.loot = loot;
   }
 };
+export const creeps = {
+  firstCityCreeps: [
+    new creep (
+      'Биофенрикс', 100, 100,
+      '23-37', '5%',
+      'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
+      1, 1
+    ),
 
-export const firstCityCreeps = [
-  new creep (
-    'Биофенрикс', 100, 100,
-    '23-37', '5%',
-    'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
-    1, 1, [
-      { name: 'базовый кристалл', description: 'Ингридиент для крафта', value: '' },
-      { name: 'biomass', description: 'Местная валюта', value: '' },
-      { name: 'fang', description: 'Можно переработать в биомассу', value: '' },
-      { name: 'meat', description: 'Можно переработать в большое кол-во биомассы', value: '' },
-    ],
-  ),
+    new creep (
+      'Гидралиск', 1150, 1150, '43-53', '15%',
+      '',
+      1, 1, [
+        { name: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
+        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+        { name: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
+        { name: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
+      ],
+    ),
 
-  new creep (
-    'Гидралиск', 1150, 1150, '43-53', '15%',
-    '',
-    1, 1, [
-      { name: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { name: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
-      { name: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
-    ],
-  ),
+    new creep (
+      'Острагаар',
+      55, 55, '15-18', '33%',
+      '',
+      1, 1, [
+        { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
+        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+        { name: 'bones', description: 'Can be sold.', value: '' },
+      ],
+    ),
 
-  new creep (
-    'Острагаар',
-    55, 55, '15-18', '33%',
-    '',
-    1, 1, [
-      { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { name: 'bones', description: 'Can be sold.', value: '' },
-    ],
-  ),
-
-  new creep (
-    'Коралиозверь', 
-    110, 110, '20-30', '8%',
-    '',
-    1, 1, [
-      { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-      { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { name: 'bones', description: 'Can be sold.', value: '' },
-    ],
-  )
-];
-
+    new creep (
+      'Коралиозверь', 
+      110, 110, '20-30', '8%',
+      '',
+      1, 1, [
+        { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
+        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
+        { name: 'bones', description: 'Can be sold.', value: '' },
+      ],
+    )
+  ]
+}
 // B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
 
 //   'Есть четыре типа кристаллов: базовые, продвинутые, промежуточные и королевские.\n';
 // 'Эти кристаллы можно использовать для улучшения своих войск, их можно обменять на биомассу, а также продать по хорошей цене.'
-
 const secondCityCreeps = {
   bioSpire: {
     name: 'Bio spire',

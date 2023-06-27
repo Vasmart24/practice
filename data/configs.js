@@ -70,7 +70,7 @@ const soldiersArr = [
   ),
   
   new Unit(
-    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 3
+    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4
   ),
   
   new Unit(
@@ -78,7 +78,7 @@ const soldiersArr = [
   ),
   
   new Unit(
-    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 4
+    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3
   )
 ];
 
@@ -279,28 +279,35 @@ export const configs = {
 
   hireTroops: () => {
     const unitNames = soldiersArr.map((unit) => unit.name);
+    const unitDescriptions = soldiersArr.map((unit) => `  Цена: ${unit.cost}, броня: ${unit.armor}\n  Здоровье: ${unit.hp}, урон: ${unit.damage}, `);
     const unitsAvailability = soldiersArr.map((unit) => !isAvailable(player.level, player.coins, unit.requiredLevel, unit.cost));
-    const unitDescriptions = soldiersArr.map((unit) => `  Цена: ${unit.cost}
-    Здоровье юнита:${unit.hp}
-    Броня: ${unit.armor}
-    приблизительный урон: ${unit.damage}`);
-    const armySoldiers = soldiersArr.map((unit) => {
-      return new Unit(unit.name, unit.hp, unit.maxHp, unit.damage, unit.armor, unit.speed, 1, unit.cost);
-    });
-    console.log(armySoldiers);
+    console.log(`у вас ${player.coins} биомассы`);
     return new Prompt(
       'Выберите отряд для найма: ',
       [...unitNames, 'Назад'],
-      [...armySoldiers, 'Back'],
+      [...soldiersArr, 'Back'],
       unitDescriptions,
       (val) => {
         let nextPrompt = game.currentPrompt.name;
         if (val != 'Back') {
-          Array.prototype.includes.call(player.army, val.name) ? player.army.push(val) : 
-          player.army[indexOf(val)].count += 1;
-          console.log(player.army);
+          const unit = player.army.find((unit) => unit.name === val.name);
+          if (unit) {
+            // Если отряд уже существует, увеличиваем количество на 1
+            unit.count += 1;
+          } else {
+            player.army.push({
+              name: val.name,
+              hp: val.hp,
+              maxHp: val.maxHp,
+              damage: val.damage,
+              armor: val.armor,
+              speed: val.speed,
+              count: val.count
+            });
+          }
           player.coins -= val.cost;
-          console.log(player.coins);
+          console.log(`Отряды игрока: ${player.army.map((unit) => ` ${unit.name} (${unit.count})`)}`);
+          console.log(`Остаток монет: ${player.coins}`);
         } else {
           nextPrompt = 'engineeringActions';
         }
