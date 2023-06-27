@@ -5,12 +5,31 @@ import cities from './Cities.js';
 import Prompt from './Prompt.js';
 import equip from './equipment.js';
 import Unit from './soldiers.js';
+import { аммуниция } from './ammunition.js';
+import { titles } from './ammunition.js';
+
+//import { creeps as enemy } from "./forest-creeps.js"
+import initiateBattle from './battle.js';
+
 
 //import { creeps as enemy } from "./forest-creeps.js"
 import initiateBattle from './battle.js';
 
 
 const troubadour = new Troubadour('sox');
+
+
+const helmetsCategory = ['penis','penis','penis'];
+const shop = {helmets: {helmetsCategory, hui: false}}
+// const troubadour = new Troubadour('sox');
+
+// troubadour.on('start', () => {
+//   console.log('Music is playing...');
+// });
+
+// troubadour.on('end', () => {
+//   console.log('Music stopped...');
+// });
 
 const city = cities[player.getPlayerLocation()];
 
@@ -54,25 +73,23 @@ const difficultyDescriptions = ['Для слабых людей', 'Очеред�
 //                      КЛАСС СОЛДАТ
 const soldiersArr = [
   new Unit(
-    'пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5
+    'пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5,
   ),
-  
+
   new Unit(
-    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4
+    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4,
   ),
-  
+
   new Unit(
-    'пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1
+    'пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1,
   ),
-  
+
   new Unit(
-    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3
-  )
+    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3,
+  ),
 ];
 
-const isAvailable = (playerLevel, playerCoins, requiredLevel, requiredCoins) => {
-  return (playerLevel >= requiredLevel) && (playerCoins >= requiredCoins);
-};
+const isAvailable = (playerLevel, playerCoins, requiredLevel, requiredCoins) => (playerLevel >= requiredLevel) && (playerCoins >= requiredCoins);
 
 export const configs = {
 
@@ -244,6 +261,18 @@ export const configs = {
     );
   },
 
+  craft: () => {
+
+    return new Prompt(
+      'Выберите тип снаряжения',
+      [...titles, 'назад'],
+      [...         'back'],[],
+      (val)=> {
+        return val;
+      }
+    )
+  },
+
   engineeringActions: () => {
     console.log('Вы зашли в центр БИОинженерии.\n');
     return new Prompt(
@@ -321,7 +350,7 @@ export const configs = {
               damage: val.damage,
               armor: val.armor,
               speed: val.speed,
-              count: val.count
+              count: val.count,
             });
           }
           player.coins -= val.cost;
@@ -330,7 +359,7 @@ export const configs = {
         }
         return nextPrompt;
       },
-      unitsAvailability
+      unitsAvailability,
     );
   },
 };

@@ -1,8 +1,6 @@
-import { playerAtk } from "../data/Player.js";
+import { playerAtk } from '../data/Player.js';
 // Функция для вычисления случайного значения в заданном диапазоне
-const getRandomValue = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
 // Функция для вычисления урона, наносимого войском
 export const calculateDamage = (unit) => {
@@ -19,7 +17,7 @@ export const calculateDamage = (unit) => {
 
 // Функция для вычисления нанесённого урона с учётом брони
 export const calculateEffectiveDamage = (damage, enemy) => {
-  // из параметра брони убираем процент и преобразуем строку в число 
+  // из параметра брони убираем процент и преобразуем строку в число
   const armor = Number(enemy.armor.slice(0, -1));
   const effectiveDamage = damage * (100 - armor) / 100;
   return Math.round(effectiveDamage);
@@ -39,7 +37,7 @@ const enemyUnit = {
   name: 'Биофенрикс',
   hp: 32,
   maxHp: 100,
-  dmg: '25-35', 
+  dmg: '25-35',
   armor: '5%',
   count: 5,
 };
@@ -56,7 +54,7 @@ export const killUnit = (unit, damage) => {
   if (unit.hp <= damage) {
     console.log(`урон: ${damage}`);
     damage -= unit.hp;
-    console.log(`Урон после вычета hp: ${damage}`)
+    console.log(`Урон после вычета hp: ${damage}`);
     unit.hp = unit.maxHp;
     unit.count -= 1;
     console.log(`Хп противника: ${unit.hp}`);
@@ -66,7 +64,7 @@ export const killUnit = (unit, damage) => {
   }
 };
 
-// Проверяем, если урон превышает оставшееся здоровье врага, 
+// Проверяем, если урон превышает оставшееся здоровье врага,
 // уменьшаем количество воинов и выводим оставшееся здоровье
 
 /*

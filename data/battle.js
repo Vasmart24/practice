@@ -12,17 +12,15 @@ export const generateEnemies = (difficulty) => {
     multiplier = 2;
   }
 
-  const enemyList = enemy.firstCityCreeps.map((creep) => {
-    return {
-      name: creep.name,
-      hp: creep.hp,
-      maxHp: creep.maxHp,
-      damage: creep.damage,
-      armor: creep.armor,
-      speed: creep.speed,
-      count: getRandomNumber(creep.count, creep.count * 2) * multiplier
-    };
-  });
+  const enemyList = enemy.firstCityCreeps.map((creep) => ({
+    name: creep.name,
+    hp: creep.hp,
+    maxHp: creep.maxHp,
+    damage: creep.damage,
+    armor: creep.armor,
+    speed: creep.speed,
+    count: getRandomNumber(creep.count, creep.count * 2) * multiplier,
+  }));
   return enemyList;
 };
 
