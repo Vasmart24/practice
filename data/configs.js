@@ -237,14 +237,30 @@ export const configs = {
     );
   },
 
+  // ['Категория 1',
+  //   ['Предмет типа снаряжения 1', 'Еще один предмет типа снаряжения 1'],
+  //   ['value1', 'value2']
+  // ]
+  // ['Категория 2',
+  // ['Предмет типа снаряжения 2', 'Еще один предмет типа снаряжения 2'],
+  //   ['value1', 'value2']
+  // ]
   craft: () => {
 
     return new Prompt(
       'Выберите тип снаряжения',
-      [...titles, 'назад'],
-      [...         'back'],[],
-      (val)=> {
-        return val;
+      ['Тип снаряжения 1', 'Тип снаряжения 2', 'назад'],
+      [['Категория 1',
+      ['Предмет типа снаряжения 1', 'Еще один предмет типа снаряжения 1', 'Назад'],
+      ['value1', 'value2', 'back']
+    ], ['Категория 2',
+    ['Предмет типа снаряжения 2', 'Еще один предмет типа снаряжения 2', 'Назад'],
+      ['value1', 'value2', 'back']
+    ], 'back'],[],
+      (category)=> {
+        let nextPrompt = () => { return new Prompt(...category)};
+        if (category === 'back') nextPrompt = category;
+        return nextPrompt;
       }
     )
   },
@@ -309,11 +325,10 @@ export const configs = {
     return new Prompt(
       'Выберите отряд для найма: ',
       [...unitNames, 'Назад'],
-      [...soldiersArr, 'Back'],
+      [...soldiersArr, 'back'],
       unitDescriptions,
       (val) => {
-        if (val != 'Back') {
-          nextPrompt = game.currPrompt;
+        if (val != 'back') {
           const unit = player.army.find((unit) => unit.name === val.name);
           if (unit) {
             // Если отряд уже существует, увеличиваем количество на 1
@@ -332,8 +347,9 @@ export const configs = {
           player.coins -= val.cost;
           console.log(`Отряды игрока: ${player.army.map((unit) => ` ${unit.name} (${unit.count})`)}`);
           console.log(`Остаток монет: ${player.coins}`);
+          return undefined;
         }
-        return nextPrompt;
+        return val;
       },
       unitsAvailability,
     );

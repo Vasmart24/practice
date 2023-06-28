@@ -1,17 +1,8 @@
-<<<<<<< HEAD
 import { creeps as enemy } from './forest-creeps.js';
 import { game } from './configs.js';
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const generateEnemies = (difficulty) => {
-=======
-import { creeps as enemy } from "./forest-creeps.js"
-
-const getRandomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-export const generateEnemies = (difficulty) => {
->>>>>>> refs/remotes/origin/main
   let multiplier = 1;
 
   if (difficulty === 'easy') {

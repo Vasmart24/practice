@@ -9,7 +9,7 @@ const makePrompt = async (prompt) => {
   if (game.isEnded) return;
   console.log(game.promptsStack)
   let { nextPrompt } = await prompts(await prompt());
-
+  console.log(typeof nextPrompt)
   if (!nextPrompt) {
     nextPrompt = game.currPrompt;
   } else if (nextPrompt != 'back') {
@@ -20,7 +20,9 @@ const makePrompt = async (prompt) => {
   }
 
   troubadour.play('sounds/click.wav');
-  makePrompt(configs[nextPrompt]);
+  console.log(typeof nextPrompt)
+  if (typeof nextPrompt === 'string') nextPrompt = configs[nextPrompt];
+  makePrompt(nextPrompt);
 };
 
 makePrompt(configs.menu);
