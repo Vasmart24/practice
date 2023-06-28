@@ -7,9 +7,8 @@ const troubadour = new Troubadour('sox');
 const makePrompt = async (prompt) => {
   // console.clear();
   if (game.isEnded) return;
-  console.log(game.promptsStack)
   let { nextPrompt } = await prompts(await prompt());
-  console.log(typeof nextPrompt)
+  
   if (!nextPrompt) {
     nextPrompt = game.currPrompt;
   } else if (nextPrompt != 'back') {
