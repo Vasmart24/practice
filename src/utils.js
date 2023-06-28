@@ -16,10 +16,10 @@ export const calculateDamage = (unit) => {
 };
 
 // Функция для вычисления нанесённого урона с учётом брони
-export const calculateEffectiveDamage = (damage, enemy) => {
+export const calculateEffectiveDamage = (damage, enemy, defence = 0) => {
   // из параметра брони убираем процент и преобразуем строку в число
   const armor = Number(enemy.armor.slice(0, -1));
-  const effectiveDamage = damage * (100 - armor) / 100;
+  const effectiveDamage = (damage * (100 - armor) / 100) * ((100 - defence) / 100);
   return Math.round(effectiveDamage);
 };
 
