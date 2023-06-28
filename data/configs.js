@@ -7,7 +7,7 @@ import equip from './equipment.js';
 import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
-
+import { calculateDamage } from '../src/utils.js';
 //import { creeps as enemy } from "./forest-creeps.js"
 import initiateBattle from './battle.js';
 
@@ -69,9 +69,9 @@ const difficultyDescriptions = ['Для слабых людей', 'Очеред�
 const soldiersArr = [
   new Unit('пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5),
 
-  new Unit('тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4),
+  new Unit('тяжелый пехотинец', 160, 160, '25-35', '47%', 1, 1, 135, 4),
 
-  new Unit('пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1),
+  new Unit('пехотинец', 170, 170, '30-40', '10%', 1, 1, 75, 1),
 
   new Unit('плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3),
 ];
@@ -201,9 +201,13 @@ export const configs = {
     console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
     return new Prompt(
       'Выберите, куда хотите пойти: ',
-      cityTitles,
-      cityValues,
+      [...cityTitles, '🪟  Выйти из игры'],
+      [...cityValues, 'endGame'],
       cityDescriptions,
+      (val) => {
+        if (val === 'endGame') game.isEnded = true;
+        return val;
+      },
     );
   },
 
@@ -296,6 +300,8 @@ export const configs = {
   battle: () => {
     const enemiesNames = game.currBattle.map((enemy) => enemy.name);
     const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
+    const troopsNames = player.army.map((troop) => troop.name);
+    const troopsDamage = player.army.map((troop) => troop.damage);
 
     return new Prompt(
       'Your turn: ',

@@ -1,7 +1,7 @@
 export const player = {
   name: 'Ell',
-  level: 3,
-  coins: 350,
+  level: 1,
+  coins: 225,
   currentLocation: 'Самсана',
   army: [],
   inventory: {
@@ -38,7 +38,6 @@ export const player = {
   lvl: 1,
   currentMission: {
     name: '',
-    award: [],
     requirements: [], // player.ammunition[0].equiped
   },
   isMissionCompleted: true, // player.currentMission.requirements,
