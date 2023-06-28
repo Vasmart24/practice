@@ -10,7 +10,7 @@ const cities = {
       Ратуша: {
         titles: ['поговорить с мэром', 'сдать задание', 'вернуться'],
         descriptions: ['узнать о городе и получить задаия', 'выполнить задание', 'Выход в город'],
-        values: ['getMainMission', 'completeMainMission', 'samsanCity'],
+        values: ['getMainMission', 'completeMainMission', 'back'],
       },
       Таверна: {
         titles: ['купить', 'продать', 'отдых', 'Изменить сложность', 'вернуться'],

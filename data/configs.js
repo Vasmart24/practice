@@ -8,6 +8,8 @@ import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
 
+import mayorDialogues from './dialogues.js';
+
 //import { creeps as enemy } from "./forest-creeps.js"
 import initiateBattle from './battle.js';
 
@@ -214,6 +216,58 @@ export const configs = {
       city.getSamsanBuilding('Ратуша', 'titles'),
       city.getSamsanBuilding('Ратуша', 'values'),
       city.getSamsanBuilding('Ратуша', 'descriptions'),
+    );
+  },
+
+  getMainMission: () => {
+    //console.log(mayorDialogues)
+    const missionIndex = player.completedMissions.length;
+    const missionName = mayorDialogues[missionIndex][0];
+    const text = mayorDialogues[missionIndex][1];
+    const missionCondition = mayorDialogues[missionIndex][2];
+    const reward = mayorDialogues[missionIndex][3];
+    if (!player.isMissionCompleted) {console.log(text)};
+    
+    return new Prompt(
+      `Принять Задание?`,
+      ['Принять', 'Отмена'],
+      ['принять', 'back'],
+      [],
+      (val) => {
+        if (val !== 'back'){
+        if(missionName === 'starting') player.coins += reward;
+        player.currentMission.name = missionName;
+        console.log(player.currentMission.isMissionCompleted);
+        player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
+        console.log(player.currentMission.isMissionCompleted);
+        return 'back';
+        }
+        return val;
+      }
+    );
+  },
+
+  completeMainMission: () => {
+    let isDisabled = true;
+    const missionIndex = player.completedMissions.length;
+    const missionName = mayorDialogues[missionIndex][0];
+    const text = mayorDialogues[missionIndex][1];
+    const missionCondition = mayorDialogues[missionIndex][2];
+    const reward = mayorDialogues[missionIndex][3];
+    if (player.currentMission.isMissionCompleted) isDisabled = false; 
+    return new Prompt(
+      '',
+      ['Сдать', 'Назад'],
+      [, 'back'],
+      [],
+      (val) => {
+        if (val !== 'back') {
+          // логика сдачи задачи
+          val = 'back';
+        }
+        return val;
+      },
+      [isDisabled, false]
     );
   },
 

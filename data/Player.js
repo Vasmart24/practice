@@ -15,7 +15,7 @@ export const player = {
   },
   ammunition: [
     {
-      name: '1', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: false,
+      name: 'Био-меч', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: true
     },
     {
       name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false,
@@ -38,10 +38,9 @@ export const player = {
   lvl: 1,
   currentMission: {
     name: '',
-    award: [],
-    requirements: [], // player.ammunition[0].equiped
+    isMissionCompleted: false, // player.currentMission.requirements,
   },
-  isMissionCompleted: true, // player.currentMission.requirements,
+  completedMissions: [],
 
   getPlayerAmmunition() {
     const inventory = this.ammunition.map((item) => `${item.name} -\n атака: ${item.parameters.atk}⚔️\n броня: ${item.parameters.armor}🛡️`);
