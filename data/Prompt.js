@@ -16,7 +16,7 @@ class Prompt {
         title: titles[i],
         description: description[i] ? description[i] : null,
         value: values[i],
-        disabled: disabled[i] ? disabled[i] : null
+        disabled: disabled[i] ? disabled[i] : null,
       });
     }
   }

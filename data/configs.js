@@ -32,7 +32,7 @@ export let game = {
   promptsStack: ['menu'],
   prevPrompt: null,
   currPrompt: 'menu',
-  player
+  player,
   /*
   player: {
     level: 1,
@@ -52,7 +52,6 @@ export const updatePrevPrompt = () => game.prevPrompt = game.promptsStack[game.p
 
 export const updateСurrPrompt = () => game.currPrompt = game.promptsStack[game.promptsStack.length - 1];
 
-
 const setDifficulty = (val) => {
   game.difficulty = val;
 };
@@ -65,26 +64,16 @@ const difficultyDescriptions = ['Для слабых людей', 'Очеред�
 
 //                      КЛАСС СОЛДАТ
 const soldiersArr = [
-  new Unit(
-    'пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5
-  ),
-  
-  new Unit(
-    'тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4
-  ),
-  
-  new Unit(
-    'пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1
-  ),
-  
-  new Unit(
-    'плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3
-  )
+  new Unit('пси-адепты', 10, 10, '25-30', '99.5%', 1, 1, 540, 5),
+
+  new Unit('тяжелый пехотинец', 160, 160, '25-35', '70%', 1, 1, 135, 4),
+
+  new Unit('пехотинец', 170, 170, '30-40', '30%', 1, 1, 75, 1),
+
+  new Unit('плазма-воины', 110, 110, '45-50', '20%', 1, 1, 115, 3),
 ];
 
-const isAvailable = (playerLevel, playerCoins, requiredLevel, requiredCoins) => {
-  return (playerLevel >= requiredLevel) && (playerCoins >= requiredCoins);
-};
+const isAvailable = (playerLevel, playerCoins, requiredLevel, requiredCoins) => (playerLevel >= requiredLevel) && (playerCoins >= requiredCoins);
 
 export const configs = {
 
@@ -168,21 +157,10 @@ export const configs = {
     },
   ),
 
-  samsanCity: () => {
-    troubadour.play('sounds/birds.wav');
-    console.log(`Вы зашли в город ${player.getPlayerLocation()}.`);
-    return new Prompt(
-      'Выберите, куда хотите пойти: ',
-      cityTitles,
-      cityValues,
-      cityDescriptions,
-    );
-  },
-
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ЭКИПИРОВКИ ПРЕДМЕТОВ ----------
 
   equipment: () => new Prompt(
-    'Выбери действие',
+    'Выберите действие',
     ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
     ['equip', 'unequip', 'backwards'],
     ['Выбрать снаряжение из инвентаря', 'Снять надетое снаряжение', 'Вернутся в город'],
@@ -197,7 +175,7 @@ export const configs = {
     console.log(values);
     console.log(description);
     return new Prompt(
-      'Выбери снаряжение',
+      'Выберите снаряжение',
       [...titles.flat()],
       [...values.flat()],
       [...description.flat()],
@@ -209,7 +187,7 @@ export const configs = {
     const values = equip.getEquipAmmunitionType(player);
     const description = equip.getEquipAmmunitionDescription(player);
     return new Prompt(
-      'Выбери снаряжени',
+      'Выберите снаряжение',
       [...titles.flat()],
       [...values.flat()],
       [...description.flat()],
@@ -260,7 +238,7 @@ export const configs = {
   },
 
   engineeringActions: () => {
-    console.log('Вы зашли в центр БИОинженерии.\n');
+    console.log('Вы зашли в центр Биоинженерии.\n');
     return new Prompt(
       'Выберите дальнейшее действие: ',
       city.getSamsanBuilding('БИОинженерия', 'titles'),
@@ -305,7 +283,7 @@ export const configs = {
               damage: val.damage,
               armor: val.armor,
               speed: val.speed,
-              count: val.count
+              count: val.count,
             });
           }
           player.coins -= val.cost;
@@ -316,7 +294,7 @@ export const configs = {
         }
         return nextPrompt;
       },
-      unitsAvailability
+      unitsAvailability,
     );
   },
 };
