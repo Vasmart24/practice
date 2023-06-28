@@ -7,7 +7,7 @@ import equip from './equipment.js';
 import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
-
+import { dialogues } from '../sounds/dialogues/mayorDualogues.js';
 import mayorDialogues from './dialogues.js';
 
 //import { creeps as enemy } from "./forest-creeps.js"
@@ -226,8 +226,10 @@ export const configs = {
     const text = mayorDialogues[missionIndex][1];
     const missionCondition = mayorDialogues[missionIndex][2];
     const reward = mayorDialogues[missionIndex][3];
-    if (!player.isMissionCompleted) {console.log(text)};
-    
+    if (!player.isMissionCompleted)  {
+      console.log(text);
+      troubadour.play(dialogues[0]);
+    }
     return new Prompt(
       `Принять Задание?`,
       ['Принять', 'Отмена'],
