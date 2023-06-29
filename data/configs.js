@@ -7,7 +7,7 @@ import equip from './equipment.js';
 import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
-import { dialogues } from '../sounds/dialogues/mayorDualogues.js';import { calculateDamage } from '../src/utils.js';
+import { dialogues } from '../sounds/dialogues/mayorDualogues.js';import { calculateDamage, calculateEffectiveDamage, killUnit } from '../src/utils.js';
 
 import mayorDialogues from './dialogues.js';
 
@@ -45,7 +45,9 @@ export let game = {
   currPrompt: 'menu',
   currBattle: null,
   player
-};
+};  
+
+console.log(game.promptsStack);
 
 export const updatePromptsStack = (prompt) => {
   if (prompt) game.promptsStack.push(prompt);
@@ -360,13 +362,14 @@ export const configs = {
     const troopsNames = player.army.map((troop) => troop.name);
     const troopsDamage = player.army.map((troop) => troop.damage);
 
+
     return new Prompt(
       'Your turn: ',
       enemiesNames,
       game.currBattle,
       enemiesDesriptions,
       (enemy) => {
-        enemy.hp -= game.player.atk;
+        
 
         if (enemy.hp <= 0) {
           troubadour.play('sounds/onKill.mp3');
