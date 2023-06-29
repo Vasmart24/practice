@@ -46,6 +46,7 @@ export let game = {
   prevPrompt: null,
   currPrompt: 'menu',
   currBattle: null,
+  reward: 0,
   player
 };  
 
@@ -168,8 +169,8 @@ export const configs = {
 
   equipment: () => new Prompt(
     'Выберите действие',
-    ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
-    ['equip', 'unequip', 'backwards'],
+    ['Надеть снаряжения', 'Снять снаряжение', 'Вернуться'],
+    ['equip', 'unequip', 'back'],
     ['Выбрать снаряжение из инвентаря', 'Снять надетое снаряжение', 'Вернутся в город'],
   ),
 
@@ -361,29 +362,28 @@ export const configs = {
     const enemiesNames = game.currBattle.map((enemy) => enemy.name);
     const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
     
-    //const troopsNames = player.army.map((troop) => troop.name);
-    
-    
+    const troopsDamage = game.player.army.map((troop) => calculateDamage(troop));
+    console.log('Ваш ход');
+    console.log(`Наносимый урон вашими солдатами: ${troopsDamage}.
+    Учитывайте броню противника при нанесении урона!`);
     return new Prompt(
-      'Your turn: ',
+      'Выберите противника: ',
       enemiesNames,
       game.currBattle,
       enemiesDesriptions,
       (enemy) => {
-        const troopsDamage = game.player.army.map((troop) => calculateDamage(troop));
         const damageDealt = calculateEffectiveDamage(_.sum(troopsDamage), enemy);
         killUnit(enemy, damageDealt);
-
         if (enemy.count <= 0) {
+          game.reward += enemy.difficulty === 'easy' ? 10 * enemy.maxCount : 50 * enemy.maxCount;
           troubadour.play('sounds/onKill.mp3');
-
-          //const deadIndex = game.currBattle.indexOf(enemy);
-          //game.currBattle.splice(deadIndex, 1);
-          // OR
           game.currBattle = game.currBattle.filter((enemy) => enemy.count > 0); // update currBattle
-
           if (game.currBattle.length === 0) {
-            console.log('Ты победил!!!!!!');
+            const reward = game.reward;
+            game.player.coins += reward;
+            console.log(`После победы над противниками вы получаете ${reward} в своё хранилище!`);
+            console.log(`текущее количество монет - ${game.player.coins}`);
+            game.reward = 0;
             return 'back';
           }
         }

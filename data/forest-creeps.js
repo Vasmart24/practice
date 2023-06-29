@@ -1,36 +1,24 @@
 class creep {
-  constructor(name, hp, maxHp, damage, armor, description = '', speed = 1, count = 1, loot = []) {
+  constructor(name, hp, maxHp, damage, armor, description = '', count = 1, maxCount = 1, difficulty = '') {
     this.name = name;
     this.hp = hp;
     this.maxHp = maxHp;
     this.damage = damage;
     this.armor = armor;
     this.description = description;
-    this.speed = speed;
     this.count = count;
-    this.loot = loot;
+    this.maxCount = maxCount;
+    this.difficulty = difficulty
   }
-}
+};
+
 export const creeps = {
   firstCityCreeps: [
     new creep(
       'Биофенрикс', 100, 100,
       '23-37', '5%',
       'Огромное волкоподобное существо, в генах которой присутствуют ДНК\n древней акулы,  гигантских снежных львов, а также мифической виверны',
-      1, 1,
-    ),
-
-    new creep(
-      'Гидралиск', 1150, 1150, '43-53', '15%',
-      '',
-      1,
-      1,
-      [
-        { name: 'advanced shard', description: 'Используется для повышения ранга войск.', value: '' },
-        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
-        { name: 'wing', description: 'Можно продать или переработать в биомассу.', value: '' },
-        { name: 'claw', description: 'Можно использовать для увеличения урона войск, можно продать.', value: '' },
-      ],
+      3, 3, 'easy',
     ),
 
     new creep(
@@ -38,30 +26,26 @@ export const creeps = {
       55,
       55,
       '15-18',
-      '33%',
+      '55%',
       '',
-      1,
-      1,
-      [
-        { name: 'basic shard', description: 'Используется для повышения ранга войск.', value: '' },
-        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
-        { name: 'bones', description: 'Можно продать.', value: '' },
-      ],
+      8,
+      8, 'easy'
     ),
 
     new creep(
       'Коралиозверь',
       110, 110, '20-30', '8%',
       '',
-      1,
-      1,
-      [
-        { name: 'basic shard', description: 'Используется для повышения ранга войск.', value: '' },
-        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
-        { name: 'bones', description: 'Можно продать.', value: '' },
-      ],
+      4,
+      4, 'easy',
     ),
   ],
+  boss: new creep(
+    'Гидралиск', 1450, 1450, '75-100', '15%',
+    '',
+    1,
+    1, 'medium',
+  ),
 };
 // B value будет хранится фукция которая при победе над противником отдает игроку лут в инвентарь
 
