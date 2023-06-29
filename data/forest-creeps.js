@@ -26,10 +26,10 @@ export const creeps = {
       1,
       1,
       [
-        { name: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-        { name: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
-        { name: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
+        { name: 'advanced shard', description: 'Используется для повышения ранга войск.', value: '' },
+        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+        { name: 'wing', description: 'Можно продать или переработать в биомассу.', value: '' },
+        { name: 'claw', description: 'Можно использовать для увеличения урона войск, можно продать.', value: '' },
       ],
     ),
 
@@ -43,9 +43,9 @@ export const creeps = {
       1,
       1,
       [
-        { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-        { name: 'bones', description: 'Can be sold.', value: '' },
+        { name: 'basic shard', description: 'Используется для повышения ранга войск.', value: '' },
+        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+        { name: 'bones', description: 'Можно продать.', value: '' },
       ],
     ),
 
@@ -56,9 +56,9 @@ export const creeps = {
       1,
       1,
       [
-        { name: 'basic shard', description: 'Used to increase the rank of troops.', value: '' },
-        { name: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-        { name: 'bones', description: 'Can be sold.', value: '' },
+        { name: 'basic shard', description: 'Используется для повышения ранга войск.', value: '' },
+        { name: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+        { name: 'bones', description: 'Можно продать.', value: '' },
       ],
     ),
   ],
@@ -75,10 +75,10 @@ const secondCityCreeps = {
     armor: '60%',
     count: 0,
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' },
-      { title: 'claw', description: 'Can be used to increase troop damage, can be sold.', value: '' },
+      { title: 'advanced shard', description: 'Используется для повышения ранга войск.', value: '' },
+      { title: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+      { title: 'bones', description: 'Можно продать.', value: '' },
+      { title: 'claw', description: 'Можно использовать для увеличения урона войск, можно продать.', value: '' },
     ],
   },
 
@@ -89,9 +89,9 @@ const secondCityCreeps = {
     armor: '20%',
     count: 0,
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'neuroplasm', description: 'Can be processed into large amound of biomass', value: '' },
+      { title: 'advanced shard', description: 'Используется для повышения ранга войск.', value: '' },
+      { title: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+      { title: 'neuroplasm', description: 'Может быть переработан в большое количество биомассы.', value: '' },
     ],
   },
 
@@ -102,10 +102,10 @@ const secondCityCreeps = {
     armor: '30%',
     count: 0,
     loot: [
-      { title: 'advanced shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'wing', description: 'Can be sold and recycled into biomass, can be sold.', value: '' },
-      { title: 'meat', description: 'Can be processed into large amounts of biomass, can be sold.', value: '' },
+      { title: 'advanced shard', description: 'Используется для повышения ранга войск.', value: '' },
+      { title: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+      { title: 'wing', description: 'Можно продать и переработать в биомассу, можно продать.', value: '' },
+      { title: 'meat', description: 'Может быть переработан в большое количество биомассы, может быть продан.', value: '' },
     ],
   },
 
@@ -116,9 +116,9 @@ const secondCityCreeps = {
     armor: '40%',
     count: 0,
     loot: [
-      { title: 'intermediate shard', description: 'Used to increase the rank of troops.', value: '' },
-      { title: 'biomass', description: 'Can be used to heal troops in the infirmary and improve troop genes.\nCan be exchanged for biomass.\nCan be sold.', value: '' },
-      { title: 'bones', description: 'Can be sold.', value: '' },
+      { title: 'intermediate shard', description: 'Используется для повышения ранга войск.', value: '' },
+      { title: 'biomass', description: 'Можно использовать для лечения войск в лазарете и улучшения генов войск.\nМожно обменять на биомассу.\nМожно продать.', value: '' },
+      { title: 'bones', description: 'Можно продать.', value: '' },
     ],
   },
 };
