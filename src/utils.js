@@ -5,13 +5,13 @@ const getRandomValue = (min, max) => Math.floor(Math.random() * (max - min + 1))
 // Функция для вычисления урона, наносимого войском
 export const calculateDamage = (unit) => {
   // Разбиваем строку мин-макс на отдельные значения
-  const [minDamage, maxDamage] = unit.dmg.split('-');
+  const [minDamage, maxDamage] = unit.damage.split('-');
   // это необходимо для более рандомного значения урона
   const min = minDamage * unit.count;
   const max = maxDamage * unit.count;
   // Получаем случайное значение урона в заданном диапазоне
-  const damage = getRandomValue(Number(min), Number(max));
-  const result = playerAtk <= 0 ? damage : damage * (playerAtk * 0.1 + 1);
+  const dmg = getRandomValue(Number(min), Number(max));
+  const result = playerAtk <= 0 ? dmg : dmg * (playerAtk * 0.1 + 1);
   return Math.round(result);
 };
 
@@ -22,31 +22,6 @@ export const calculateEffectiveDamage = (damage, enemy, defence = 0) => {
   const effectiveDamage = (damage * (100 - armor) / 100) * ((100 - defence) / 100);
   return Math.round(effectiveDamage);
 };
-
-// Объект с характеристиками союзного войска
-const alliedUnit = {
-  name: 'Тяжёлый пехотинец',
-  hp: 160,
-  dmg: '25-35',
-  armor: '70%',
-  count: 10,
-};
-
-// Объект с характеристиками вражеского отряда
-const enemyUnit = {
-  name: 'Биофенрикс',
-  hp: 32,
-  maxHp: 100,
-  dmg: '25-35',
-  armor: '5%',
-  count: 5,
-};
-
-// Вычисляем урон, наносимый союзным войском
-const damageDealt = calculateDamage(alliedUnit);
-
-// Применяем урон к вражескому отряду, учитывая броню
-const effectiveDamage = calculateEffectiveDamage(damageDealt, enemyUnit);
 
 export const killUnit = (unit, damage) => {
   console.log(`Хп противника до вычета: ${unit.hp}`);

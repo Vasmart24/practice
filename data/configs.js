@@ -360,17 +360,17 @@ export const configs = {
   battle: () => {
     const enemiesNames = game.currBattle.map((enemy) => enemy.name);
     const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
-
+    
     //const troopsNames = player.army.map((troop) => troop.name);
-    const troopsDamage = player.army.map((troop) => calculateDamage(troop));
-
-
+    
+    
     return new Prompt(
       'Your turn: ',
       enemiesNames,
       game.currBattle,
       enemiesDesriptions,
       (enemy) => {
+        const troopsDamage = game.player.army.map((troop) => calculateDamage(troop));
         const damageDealt = calculateEffectiveDamage(_.sum(troopsDamage), enemy);
         killUnit(enemy, damageDealt);
 
@@ -393,7 +393,7 @@ export const configs = {
 
   hireTroops: () => {
     const unitNames = soldiersArr.map((unit) => unit.name);
-    const unitDescriptions = soldiersArr.map((unit) => `  Цена: ${unit.cost}, броня: ${unit.armor}\n  Здоровье: ${unit.hp}, урон: ${unit.damage}, `);
+    const unitDescriptions = soldiersArr.map((unit) => `  Цена: ${unit.cost}\n броня: ${unit.armor}, Здоровье: ${unit.hp}, урон: ${unit.damage}, `);
     const unitsAvailability = soldiersArr.map((unit) => !isAvailable(player.level, player.coins, unit.requiredLevel, unit.cost));
     console.log(`у вас ${player.coins} биомассы`);
     return new Prompt(
