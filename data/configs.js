@@ -134,12 +134,12 @@ export const configs = {
     troubadour.play('sounds/save.mp3');
     return {
       type: 'text',
-      name: 'value',
+      name: 'nextPrompt',
       message: 'Как обзовем тебя, салага? (речь о сохранении)',
       format: async (saveName) => {
         save(game, saveName);
         console.log('❗ Сохранение заползло под шконку в saves, начальник');
-        return game.prevPrompt.name;
+        return 'back';
       },
     };
   },
@@ -373,6 +373,10 @@ export const configs = {
         const troopsDamage = game.player.army.map((troop) => calculateDamage(troop));
         const damageDealt = calculateEffectiveDamage(_.sum(troopsDamage), enemy);
         killUnit(enemy, damageDealt);
+
+        console.log(troopsDamage)
+        console.log(damageDealt)
+        console.log(enemy)
 
         if (enemy.count <= 0) {
           troubadour.play('sounds/onKill.mp3');
