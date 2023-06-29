@@ -46,6 +46,8 @@ export let game = {
   prevPrompt: null,
   currPrompt: 'menu',
   currBattle: null,
+  equipTitles: ['Нейрофрейм'],
+  unequipTitles: ['Био-меч'],
   player
 };  
 
@@ -168,36 +170,58 @@ export const configs = {
 
   equipment: () => new Prompt(
     'Выберите действие',
-    ['Надеть снаряжения', 'Снять снаряжение', 'Вернутся'],
-    ['equip', 'unequip', 'backwards'],
-    ['Выбрать снаряжение из инвентаря', 'Снять надетое снаряжение', 'Вернутся в город'],
+    ['Надеть снаряжение', 'Снять снаряжение', 'Вернуться'],
+    ['equip', 'unequip', 'back'],
+    ['Выбрать снаряжение из инвентаря', 'Снять надетое снаряжение', 'Вернуться в город'],
   ),
 
   equip: () => {
-    const titles = equip.getAmmunitionName(player);
-    const values = equip.getAmmunitionType(player);
-    const description = equip.getAmmunitionDescription(player);
-
-    console.log(titles);
-    console.log(values);
-    console.log(description);
+    //const titles = equip.getAmmunitionName(player);
+    const titles = game.equipTitles;
+    //const values = equip.getAmmunitionType(player);
+    //const description = equip.getAmmunitionDescription(player);
+    console.log(titles)
     return new Prompt(
       'Выберите снаряжение',
-      [...titles.flat()],
-      [...values.flat()],
-      [...description.flat()],
+      [...titles, 'Назад'],
+      [...titles, 'back'],
+     // [...description.flat(), 'Отменить'],
+      [],
+      (val) => {
+      
+        if (val !== 'back') {
+          game.equipTitles.splice(game.equipTitles.indexOf(val), 1);
+          game.unequipTitles.push(val);
+          player.atk += val.atk;
+          player.armor += val.armor;
+          return undefined;
+        }
+        return 'back';
+      }
     );
   },
 
   unequip: () => {
-    const titles = equip.getEquipAmunitionName(player);
-    const values = equip.getEquipAmmunitionType(player);
-    const description = equip.getEquipAmmunitionDescription(player);
+    //const titles = equip.getEquipAmunitionName(player);
+    const titles = game.unequipTitles;
+    //const values = equip.getEquipAmmunitionType(player);
+    //const description = equip.getEquipAmmunitionDescription(player);
     return new Prompt(
       'Выберите снаряжение',
-      [...titles.flat()],
-      [...values.flat()],
-      [...description.flat()],
+      [...titles, 'Назад'],
+      [...titles, 'back'],
+      //[...description.flat(), 'Отменить'],
+      [],
+      (val) => {
+        if (val !== 'back') {
+          game.unequipTitles.splice(game.unequipTitles.indexOf(val), 1);
+          game.equipTitles.push(val);
+          player.atk -= val.atk;
+          player.armor -= val.armor;
+          return undefined;
+        }
+        return 'back';
+      }
     );
   },
 

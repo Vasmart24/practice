@@ -10,7 +10,7 @@ class Ammunition {
 }
 
 export const аммуниция = {
-Шлемы: [
+head: [
   new Ammunition('Нейрофрейм', 'голова', [
     { atk: 2, armor: 4 },
     { description: 'Базовый шлем, вряд ли защитит от чего-то сильного, но от чье-го то удара черепушку убережёт.' },
@@ -29,7 +29,7 @@ export const аммуниция = {
   ]),
 ],
 
-веапон: {
+weapon: {
   оружие: [
     new Ammunition('нано-сабля', 'оружие', [
       { atk: 8, armor: 0 },
@@ -50,7 +50,7 @@ export const аммуниция = {
   ] 
 },
 
-нагрудник: {
+chest: {
   нагрудники: [
     new Ammunition('Неофьюз', 'нагрудник', [
       { atk: 2, armor: 5 },
@@ -71,7 +71,7 @@ export const аммуниция = {
   ]
 },
 
-изберезовойкоры: {
+leggings: {
   поножи: [
     new Ammunition('Нанокожа', 'поножи', [
       { atk: 1, armor: 3 },
@@ -92,7 +92,7 @@ export const аммуниция = {
   ]
 },
 
-тяги: {
+boots: {
   носки: [
     new Ammunition('Синтетические штиблеты', 'ботинки', [
       { atk: 1, armor: 2 },
@@ -114,7 +114,7 @@ export const аммуниция = {
 },
 
 
- кольцо: {
+ ring: {
   кольца: [
     new Ammunition('Нейроритм', 'кольцо', [
       { atk: 2, armor: 2 },
