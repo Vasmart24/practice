@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const player = {
   name: 'Ell',
   level: 1,
@@ -15,7 +17,7 @@ export const player = {
   },
   ammunition: [
     {
-      name: 'Био-меч', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: true
+      name: 'Био-меч', type: 'weapon', parameters: { atk: 0, armor: 0 }, equiped: true //true
     },
     {
       name: '2', type: 'head', parameters: { atk: 0, armor: 0 }, equiped: false,
@@ -24,7 +26,7 @@ export const player = {
       name: '3', type: 'chest', parameters: { atk: 0, armor: 0 }, equiped: false,
     },
     {
-      name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true,
+      name: '4', type: 'leggings', parameters: { atk: 0, armor: 0 }, equiped: true, //true
     },
     {
       name: '5', type: 'boots', parameters: { atk: 0, armor: 0 }, equiped: false,
@@ -64,5 +66,5 @@ export const player = {
   },
 };
 
-export const playerAtk = player.atk;
-export const playerArmor = player.armor;
+export const playerAtk = _.sum(player.ammunition.filter((item) => item.equiped).map((item) => item.parameters.atk));
+export const playerArmor = _.sum(player.ammunition.filter((item) => item.equiped).map((item) => item.parameters.armor));

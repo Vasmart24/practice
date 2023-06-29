@@ -20,9 +20,6 @@ export const getSaves = async () => {
 
 // save - асинхронная функция, записывающая объект game в папку saves в файл с именем [name].json.
 // В случае если name не указан, файл будет иметь имя save[maxIndex + 1].json
-// Побочные эффекты:
-// 1) Добавление нового файла в папку saves.
-// 2) Вывод сообщения 'Игра успешно сохранена.' в консоль.
 export const save = async (game, name) => {
   try {
     let filename = `/${name}.json`;
