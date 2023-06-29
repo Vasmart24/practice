@@ -8,7 +8,7 @@ import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
 import { dialogues } from '../sounds/dialogues/mayorDualogues.js';
-import { killUNit, calculateDamage, calculateEffectiveDamage } from '../src/utils.js';
+import { killUnit, calculateDamage, calculateEffectiveDamage } from '../src/utils.js';
 
 import mayorDialogues from './dialogues.js';
 
