@@ -7,12 +7,14 @@ import equip from './equipment.js';
 import Unit from './soldiers.js';
 import { аммуниция } from './ammunition.js';
 import { titles } from './ammunition.js';
-import { dialogues } from '../sounds/dialogues/mayorDualogues.js';import { calculateDamage } from '../src/utils.js';
+import { dialogues } from '../sounds/dialogues/mayorDualogues.js';
+import { killUNit, calculateDamage, calculateEffectiveDamage } from '../src/utils.js';
 
 import mayorDialogues from './dialogues.js';
 
 //import { creeps as enemy } from "./forest-creeps.js"
 import initiateBattle from './battle.js';
+import _ from 'lodash';
 
 const troubadour = new Troubadour('sox');
 
@@ -339,26 +341,26 @@ export const configs = {
   samsanBattleActions: () => {
     console.log('Вы вышли в окраину города.\n');
 
-    const enemies = initiateBattle(game);
-    console.log(game.currBattle);
-
+    const isDisabled = player.army.length === 0;
     return new Prompt(
       'Выберите дальнейшее действие: ',
       city.getSamsanBuilding('окраина', 'titles'),
       city.getSamsanBuilding('окраина', 'values'),
       city.getSamsanBuilding('окраина', 'descriptions'),
       (val) => {
-        if (val === 'battle') game.currBattle = enemies;
+        if (val === 'battle') game.currBattle = initiateBattle(game);
         return val;
-      }
+      },
+      [isDisabled]
     );
   },
 
   battle: () => {
     const enemiesNames = game.currBattle.map((enemy) => enemy.name);
     const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
-    const troopsNames = player.army.map((troop) => troop.name);
-    const troopsDamage = player.army.map((troop) => troop.damage);
+
+    //const troopsNames = player.army.map((troop) => troop.name);
+    const troopsDamage = player.army.map((troop) => calculateDamage(troop));
 
     return new Prompt(
       'Your turn: ',
@@ -366,11 +368,17 @@ export const configs = {
       game.currBattle,
       enemiesDesriptions,
       (enemy) => {
-        enemy.hp -= game.player.atk;
+        const damageDealt = calculateEffectiveDamage(_.sum(troopsDamage), enemy);
+        killUnit(enemy, damageDealt);
 
-        if (enemy.hp <= 0) {
+        if (enemy.count <= 0) {
           troubadour.play('sounds/onKill.mp3');
-          game.currBattle = game.currBattle.filter((enemy) => enemy.hp > 0); // update currBattle
+
+          //const deadIndex = game.currBattle.indexOf(enemy);
+          //game.currBattle.splice(deadIndex, 1);
+          // OR
+          game.currBattle = game.currBattle.filter((enemy) => enemy.count > 0); // update currBattle
+
           if (game.currBattle.length === 0) {
             console.log('Ты победил!!!!!!');
             return 'back';

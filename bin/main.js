@@ -5,7 +5,7 @@ import { configs, game, updatePromptsStack } from '../data/configs.js';
 const troubadour = new Troubadour('sox');
 
 const makePrompt = async (prompt) => {
-  // console.clear();
+  console.clear();
   if (game.isEnded) return;
   let { nextPrompt } = await prompts(await prompt());
   
