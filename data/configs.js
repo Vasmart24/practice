@@ -293,8 +293,6 @@ export const configs = {
     let isDisabled = true;
     const missionIndex = player.completedMissions.length;
     const missionName = mayorDialogues[missionIndex][0];
-    const text = mayorDialogues[missionIndex][1];
-    const missionCondition = mayorDialogues[missionIndex][2];
     const reward = mayorDialogues[missionIndex][3];
     if (player.currentMission.isMissionCompleted) isDisabled = false; 
     return new Prompt(
@@ -304,7 +302,9 @@ export const configs = {
       [],
       (val) => {
         if (val !== 'back') {
-          // логика сдачи задачи
+          game.player.currentMission.isMissionCompleted = false;
+          game.player.completedMissions.push(missionName);
+          if(missionIndex !== 0) game.player.coins += reward;
           val = 'back';
         }
         return val;
@@ -390,9 +390,11 @@ export const configs = {
 
   battle: () => {
     const enemiesNames = game.currBattle.map((enemy) => enemy.name);
-    const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}`);
+    const enemiesDesriptions = game.currBattle.map((enemy) => `${enemy.hp}/${enemy.maxHp}, кол-во ${enemy.count}, броня - ${enemy.armor}
+    ответный урон - ${calculateDamage(enemy)}`);
     
     const troopsDamage = game.player.army.map((troop) => calculateDamage(troop));
+    if(troopsDamage === 0) game.isEnded = true;
     console.log('Ваш ход');
     console.log(`Наносимый урон вашими солдатами: ${troopsDamage}.
     Учитывайте броню противника при нанесении урона!`);
