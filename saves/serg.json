@@ -1,0 +1,106 @@
+{
+  "name": "serg",
+  "difficulty": "normal",
+  "promptsStack": [
+    "menu",
+    "initGame",
+    "samsanCity",
+    "tavernActions"
+  ],
+  "prevPrompt": "samsanCity",
+  "currPrompt": "tavernActions",
+  "currBattle": null,
+  "reward": 0,
+  "equipTitles": [
+    "Нейрофрейм"
+  ],
+  "unequipTitles": [
+    "Био-меч"
+  ],
+  "player": {
+    "name": "Ell",
+    "level": 2,
+    "coins": 445,
+    "currentLocation": "Самсана",
+    "army": [],
+    "inventory": {
+      "ammunition": [
+        {
+          "name": "Нейрофрейм",
+          "type": "head",
+          "parameters": {
+            "atk": 2,
+            "armor": 4
+          },
+          "description": "Атака: 2  Защита: 4"
+        }
+      ],
+      "items": []
+    },
+    "ammunition": [
+      {
+        "name": "Био-меч",
+        "type": "weapon",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": true
+      },
+      {
+        "name": "2",
+        "type": "head",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": false
+      },
+      {
+        "name": "3",
+        "type": "chest",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": false
+      },
+      {
+        "name": "4",
+        "type": "leggings",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": true
+      },
+      {
+        "name": "5",
+        "type": "boots",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": false
+      },
+      {
+        "name": "6",
+        "type": "ring",
+        "parameters": {
+          "atk": 0,
+          "armor": 0
+        },
+        "equiped": false
+      }
+    ],
+    "atk": 2,
+    "armor": 2,
+    "currentMission": {
+      "name": "Первая миссия",
+      "isMissionCompleted": false
+    },
+    "completedMissions": [
+      "Первая миссия"
+    ]
+  }
+}

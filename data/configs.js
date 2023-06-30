@@ -253,22 +253,32 @@ export const configs = {
     const text = mayorDialogues[missionIndex][1];
     const missionCondition = mayorDialogues[missionIndex][2];
     const reward = mayorDialogues[missionIndex][3];
-      console.log(text);
-      troubadour.play(dialogues[missionIndex]);
+    console.log(text);
+    troubadour.play(dialogues[missionIndex]);
     return new Prompt(
       `Принять Задание?`,
       ['Принять', 'Отмена'],
       ['принять', 'back'],
       [],
       (val) => {
+        troubadour.stop();
         if (val !== 'back'){
-        if(missionName === 'Первая миссия') player.coins += reward;
-        console.log(`Ваши средства были увеличены!
-        Текущие средства: ${game.player.coins}`);
-        player.currentMission.name = missionName;
-        //console.log(player.currentMission.isMissionCompleted);
-        player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
-        //console.log(player.currentMission.isMissionCompleted);
+          player.currentMission.name = missionName;
+          if (missionName === 'Первая миссия') {
+            player.coins += reward;
+            console.log(`Ваши средства были увеличены!
+            Текущие средства: ${game.player.coins}`)
+            console.log(game.player.currentMission.isMissionCompleted);
+            player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
+            console.log(game.player.currentMission.isMissionCompleted);
+          }
+          if (missionName === 'Кровавая бойня') {
+            console.log('победите отряд кровавых волков, находящихся на окраине города\nНе забудьте нанять войска для битвы');
+            console.log(game.player.currentMission.isMissionCompleted);
+            player.currentMission.isMissionCompleted = missionCondition('Шкура волка', player)
+            console.log(game.player.currentMission.isMissionCompleted);
+          }
+        // console.log(mis);
         console.log(missionName);
         console.log(game.player.currentMission.name);
         return 'back';
@@ -279,7 +289,7 @@ export const configs = {
   },
 
   completeMainMission: () => {
-    let isDisabled = true;
+    const isDisabled = true;
     const missionIndex = player.completedMissions.length;
     const missionName = mayorDialogues[missionIndex][0];
     const reward = mayorDialogues[missionIndex][3];
@@ -291,12 +301,11 @@ export const configs = {
       [],
       (val) => {
         if (val !== 'back') {
-
           game.player.currentMission.isMissionCompleted = false;
           game.player.completedMissions.push(missionName);
           if(missionIndex !== 0) game.player.coins += reward;
           game.player.level += 1;
-          console.log(`Уровень повышен! Теперь у вас ${game.player.level}уровень.`);
+          console.log(`Уровень повышен! Теперь у вас ${game.player.level} уровень.`);
           val = 'back';
         }
         return val;

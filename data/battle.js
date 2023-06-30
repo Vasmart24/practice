@@ -18,7 +18,7 @@ const generateEnemies = (difficulty) => {
     wolves = enemy.firstCityCreeps[0];
 
     wolves.count = Math.floor(getRandomNumber(2, 4) * multiplier);
-    return [wolves];
+    return ([wolves]);
   };
   const easyCount = Math.floor(getRandomNumber(2, 4) * multiplier);
   const mediumCount = Math.floor(getRandomNumber(4, 8) * multiplier);
