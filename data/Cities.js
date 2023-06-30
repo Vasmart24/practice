@@ -15,17 +15,17 @@ const cities = {
       Таверна: {
         titles: ['Настройки снаряжения', 'Отдых', 'Изменить сложность', 'вернуться'],
         descriptions: ['Надеть/снять снаряжение', 'восстановить выносливость и сохраниться', 'Я пахну слабостью', 'Выход в город'],
-        values: ['equipment', 'saveGame', 'difficulty', 'samsanCity'],
+        values: ['equipment', 'saveGame', 'difficulty', 'back'],
       },
       Рынок: {
         titles: ['создать', 'продать', 'вернуться'],
         descriptions: ['изготовить снаряжение', 'продать снаряжение', 'Выход в город'],
-        values: ['craft', 'sellAmmunition', 'samsanCity'],
+        values: ['craft', 'sellAmmunition', 'back'],
       },
       БИОинженерия: {
-        titles: ['найм', 'улучшить', 'разобрать', 'вернуться'],
-        descriptions: ['создать войска', 'улучшить уровень создаваемых войск', 'переработать войска в биомассу', 'Выход в город'],
-        values: ['hireTroops', 'upgradeTroops', 'recycleTroops', 'samsanCity'],
+        titles: ['найм', 'вернуться'],
+        descriptions: ['создать войска', 'Выход в город'],
+        values: ['hireTroops', 'back'],
       },
       окраина: {
         titles: ['Сразиться', 'Сбежать'],

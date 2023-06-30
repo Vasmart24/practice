@@ -18,19 +18,6 @@ import _ from 'lodash';
 
 const troubadour = new Troubadour('sox');
 
-
-const helmetsCategory = ['penis','penis','penis'];
-const shop = {helmets: {helmetsCategory, hui: false}}
-// const troubadour = new Troubadour('sox');
-
-// troubadour.on('start', () => {
-//   console.log('Music is playing...');
-// });
-
-// troubadour.on('end', () => {
-//   console.log('Music stopped...');
-// });
-
 const city = cities[player.getPlayerLocation()];
 
 const cityTitles = city.buildings.titles;
@@ -50,7 +37,7 @@ export let game = {
   equipTitles: ['Нейрофрейм'],
   unequipTitles: ['Био-меч'],
   player
-};  
+};
 
 export const updatePromptsStack = (prompt) => {
   if (prompt) game.promptsStack.push(prompt);
@@ -260,10 +247,8 @@ export const configs = {
     const text = mayorDialogues[missionIndex][1];
     const missionCondition = mayorDialogues[missionIndex][2];
     const reward = mayorDialogues[missionIndex][3];
-    if (!player.isMissionCompleted)  {
       console.log(text);
-      troubadour.play(dialogues[0]);
-    }
+      troubadour.play(dialogues[missionIndex]);
     return new Prompt(
       `Принять Задание?`,
       ['Принять', 'Отмена'],
@@ -271,11 +256,15 @@ export const configs = {
       [],
       (val) => {
         if (val !== 'back'){
-        if(missionName === 'starting') player.coins += reward;
+        if(missionName === 'Первая миссия') player.coins += reward;
+        console.log(`Ваши средства были увеличены!
+        Текущие средства: ${game.player.coins}`);
         player.currentMission.name = missionName;
         //console.log(player.currentMission.isMissionCompleted);
         player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
         //console.log(player.currentMission.isMissionCompleted);
+        console.log(missionName);
+        console.log(game.player.currentMission.name);
         return 'back';
         }
         return val;
@@ -296,9 +285,12 @@ export const configs = {
       [],
       (val) => {
         if (val !== 'back') {
+
           game.player.currentMission.isMissionCompleted = false;
           game.player.completedMissions.push(missionName);
           if(missionIndex !== 0) game.player.coins += reward;
+          game.player.level += 1;
+          console.log(`Уровень повышен! Теперь у вас ${game.player.level}уровень.`);
           val = 'back';
         }
         return val;
@@ -335,6 +327,7 @@ export const configs = {
   // ['Предмет типа снаряжения 2', 'Еще один предмет типа снаряжения 2'],
   //   ['value1', 'value2']
   // ]
+
   craft: () => {
 
     return new Prompt(

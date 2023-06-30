@@ -2,23 +2,36 @@ import { creeps as enemy } from './forest-creeps.js';
 import { game } from './configs.js';
 
 const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
 const generateEnemies = (difficulty) => {
+
   let multiplier = 1;
+  let enemyList;
 
   if (difficulty === 'easy') {
-    multiplier = 0.5;
+    multiplier = 0.65;
   } else if (difficulty === 'hard') {
     multiplier = 2;
   }
 
-  const enemyList = enemy.firstCityCreeps.map((creep) => ({
+  if (game.player.currentMission.name === 'Кровавая бойня') {
+    wolves = enemy.firstCityCreeps[0];
+
+    wolves.count = Math.floor(getRandomNumber(2, 4) * multiplier);
+    return [wolves];
+  };
+  const easyCount = Math.floor(getRandomNumber(2, 4) * multiplier);
+  const mediumCount = Math.floor(getRandomNumber(4, 8) * multiplier);
+
+  enemyList = enemy.firstCityCreeps.map((creep) => ({
     name: creep.name,
     hp: creep.hp,
     maxHp: creep.maxHp,
     damage: creep.damage,
     armor: creep.armor,
-    speed: creep.speed,
-    count: getRandomNumber(creep.count, creep.count * 2) * multiplier,
+    count: creep.difficulty === 'easy' ? easyCount : mediumCount,
+    maxCount: creep.maxCount,
+    difficulty: creep.difficulty,
   }));
   return enemyList;
 };

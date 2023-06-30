@@ -37,7 +37,6 @@ export const player = {
   ],
   atk: 2,
   armor: 2,
-  lvl: 1,
   currentMission: {
     name: '',
     isMissionCompleted: false, // player.currentMission.requirements,
