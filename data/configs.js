@@ -52,8 +52,6 @@ export let game = {
   player
 };  
 
-console.log(game.promptsStack);
-
 export const updatePromptsStack = (prompt) => {
   if (prompt) game.promptsStack.push(prompt);
   else game.promptsStack.pop();
@@ -93,14 +91,12 @@ export const configs = {
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
   menu: () =>
-    // troubadour.play('sounds/menu.mp3');
     new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪛  Настройки', '🪟  Выйти'],
       ['initGame', 'savesList', 'saveGame', 'settings', 'endGame'],
       [],
       (val) => {
-        // troubadour.stop();
         if (val === 'endGame') game.isEnded = true;
         return val;
       },
@@ -250,6 +246,10 @@ export const configs = {
       city.getSamsanBuilding('Ратуша', 'titles'),
       city.getSamsanBuilding('Ратуша', 'values'),
       city.getSamsanBuilding('Ратуша', 'descriptions'),
+      (val) => {
+        return val;
+      },
+      [game.player.currentMission.isMissionCompleted]
     );
   },
 
@@ -273,9 +273,9 @@ export const configs = {
         if (val !== 'back'){
         if(missionName === 'starting') player.coins += reward;
         player.currentMission.name = missionName;
-        console.log(player.currentMission.isMissionCompleted);
+        //console.log(player.currentMission.isMissionCompleted);
         player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
-        console.log(player.currentMission.isMissionCompleted);
+        //console.log(player.currentMission.isMissionCompleted);
         return 'back';
         }
         return val;
