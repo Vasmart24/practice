@@ -6,9 +6,7 @@ const troubadour = new Troubadour('sox');
 
 const makePrompt = async (prompt) => {
   //console.clear();
-  if (game.isEnded) return;
   let { nextPrompt } = await prompts(await prompt());
-
   if (!nextPrompt) {
     nextPrompt = game.currPrompt;
   } else if (nextPrompt != 'back') {

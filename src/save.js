@@ -38,10 +38,10 @@ export const save = async (game, name) => {
   }
 };
 
-export const load = async (saveName) => {
+export const load = (saveName) => {
   const filename = `/${saveName}`;
   try {
-    const rawdata = await fsp.readFile(path + filename);
+    const rawdata = fs.readFileSync(path + filename);
     const data = JSON.parse(rawdata);
     return data;
   } catch (e) {
