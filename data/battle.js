@@ -14,12 +14,12 @@ const generateEnemies = (difficulty) => {
     multiplier = 2;
   }
 
-  if (game.player.currentMission.name === 'Кровавая бойня') {
-    wolves = enemy.firstCityCreeps[0];
+  // if (game.player.currentMission.name === 'Кровавая бойня') {
+  //   wolves = enemy.firstCityCreeps[0];
 
-    wolves.count = Math.floor(getRandomNumber(2, 4) * multiplier);
-    return ([wolves]);
-  };
+  //   wolves.count = Math.floor(getRandomNumber(2, 4) * multiplier);
+  //   return ([wolves]);
+  // };
   const easyCount = Math.floor(getRandomNumber(2, 4) * multiplier);
   const mediumCount = Math.floor(getRandomNumber(4, 8) * multiplier);
 
