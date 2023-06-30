@@ -248,6 +248,7 @@ export const configs = {
 
   getMainMission: () => {
     //console.log(mayorDialogues)
+    let isDisabled = game.player.currentMission.isMissionCompleted;
     const missionIndex = player.completedMissions.length;
     const missionName = mayorDialogues[missionIndex][0];
     const text = mayorDialogues[missionIndex][1];
@@ -268,32 +269,28 @@ export const configs = {
             player.coins += reward;
             console.log(`Ваши средства были увеличены!
             Текущие средства: ${game.player.coins}`)
-            console.log(game.player.currentMission.isMissionCompleted);
             player.currentMission.isMissionCompleted = missionCondition('Био-меч', player);
-            console.log(game.player.currentMission.isMissionCompleted);
-          }
-          if (missionName === 'Кровавая бойня') {
+          } else if (missionName === 'Кровавая бойня') {
             console.log('победите отряд кровавых волков, находящихся на окраине города\nНе забудьте нанять войска для битвы');
-            console.log(game.player.currentMission.isMissionCompleted);
-            player.currentMission.isMissionCompleted = missionCondition('Шкура волка', player)
-            console.log(game.player.currentMission.isMissionCompleted);
+            game.player.currentMission.isMissionCompleted = missionCondition('Шкура волка', player)
           }
-        // console.log(mis);
-        console.log(missionName);
-        console.log(game.player.currentMission.name);
         return 'back';
         }
         return val;
-      }
+      },
+      [isDisabled, false]
     );
   },
 
   completeMainMission: () => {
-    let isDisabled = true;
+    let isDisabled = game.player.currentMission.isMissionCompleted;
     const missionIndex = player.completedMissions.length;
     const missionName = mayorDialogues[missionIndex][0];
+    const missionCondition = mayorDialogues[missionIndex[2]]
     const reward = mayorDialogues[missionIndex][3];
-    if (player.currentMission.isMissionCompleted) isDisabled = false; 
+    if (player.currentMission.isMissionCompleted) {
+      isDisabled = false;
+    } else isDisabled = true
     return new Prompt(
       '',
       ['Сдать', 'Назад'],
@@ -301,8 +298,8 @@ export const configs = {
       [],
       (val) => {
         if (val !== 'back') {
-          game.player.currentMission.isMissionCompleted = false;
           game.player.completedMissions.push(missionName);
+          game.player.currentMission.isMissionCompleted = missionCondition('Шкура волка', player);
           if(missionIndex !== 0) game.player.coins += reward;
           game.player.level += 1;
           console.log(`Уровень повышен! Теперь у вас ${game.player.level} уровень.`);
@@ -410,11 +407,16 @@ export const configs = {
         killUnit(enemy, damageDealt);
         if (enemy.count <= 0) {
           game.reward += enemy.difficulty === 'easy' ? 10 * enemy.maxCount : 50 * enemy.maxCount;
-          troubadour.play('sounds/onKill.mp3');
+          troubadour.play('sounds/click.wav');
           game.currBattle = game.currBattle.filter((enemy) => enemy.count > 0); // update currBattle
           if (game.currBattle.length === 0) {
             const reward = game.reward;
             game.player.coins += reward;
+            if (game.player.currentMission.name === 'Кровавая бойня') {
+              game.player.inventory.items.push(
+                {name: 'шкура волка', count: enemy.maxCount}
+                )
+            }
             console.log(`После победы над противниками вы получаете ${reward} в своё хранилище!`);
             console.log(`текущее количество монет - ${game.player.coins}`);
             game.reward = 0;

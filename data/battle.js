@@ -6,7 +6,7 @@ const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)
 const generateEnemies = (difficulty) => {
 
   let multiplier = 1;
-  let enemyList;
+  let enemyList = [];
 
   if (difficulty === 'easy') {
     multiplier = 0.65;
@@ -22,7 +22,20 @@ const generateEnemies = (difficulty) => {
   // };
   const easyCount = Math.floor(getRandomNumber(2, 4) * multiplier);
   const mediumCount = Math.floor(getRandomNumber(4, 8) * multiplier);
-
+  if (game.player.currentMission.name === 'Кровавая бойня') {
+    enemyList.push(enemy.firstCityCreeps[0]);
+    const count = easyCount;
+    return enemyList.map((wolf) => ({
+      name: wolf.name,
+      hp: wolf.hp,
+      maxHp: wolf.maxHp,
+      damage: wolf.damage,
+      armor: wolf.armor,
+      count: count,
+      maxCount: count,
+      difficulty: wolf.difficulty
+    }))
+  }
   enemyList = enemy.firstCityCreeps.map((creep) => ({
     name: creep.name,
     hp: creep.hp,
