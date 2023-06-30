@@ -24,9 +24,7 @@ const cityTitles = city.buildings.titles;
 const cityValues = city.buildings.values;
 const cityDescriptions = city.buildings.descriptions;
 
-// Хранилище данных конкретной игры
-export let game = {
-  isEnded: false,
+const defaultGame = {
   name: null,
   difficulty: 'normal',
   promptsStack: ['menu'],
@@ -38,6 +36,12 @@ export let game = {
   unequipTitles: ['Био-меч'],
   player
 };
+<<<<<<< HEAD
+=======
+
+// Хранилище данных конкретной игры
+export let game;
+>>>>>>> refs/remotes/origin/main
 
 export const updatePromptsStack = (prompt) => {
   if (prompt) game.promptsStack.push(prompt);
@@ -77,17 +81,19 @@ export const configs = {
 
   // ---------- ПРОМПТЫ ДЛЯ МЕНЮ ----------
 
-  menu: () =>
-    new Prompt(
+  menu: () => {
+    game = {...defaultGame};
+    return new Prompt(
       '☰',
       ['🎮 Новая игра', '🔃 Загрузить', '💾 Сохранить', '🪛  Настройки', '🪟  Выйти'],
       ['initGame', 'savesList', 'saveGame', 'settings', 'endGame'],
       [],
       (val) => {
-        if (val === 'endGame') game.isEnded = true;
+        if (val === 'endGame') process.exit();
         return val;
       },
-    ),
+    )
+  },
 
   initGame: () => new Prompt(
     difficultyMessage,
@@ -109,9 +115,12 @@ export const configs = {
       [...titles, 'Назад'],
       [...values, 'back'],
       [],
-      async (val) => {
-        if (val != 'back') game = await load(saveName);
-        return 'back';
+      (val) => {
+        if (val != 'back') {
+          game = load(val);
+          return game.currPrompt;
+        }
+        return val;
       },
     );
   },
@@ -220,7 +229,7 @@ export const configs = {
       [...cityValues, 'endGame'],
       cityDescriptions,
       (val) => {
-        if (val === 'endGame') game.isEnded = true;
+        if (val === 'endGame') process.exit();
         return val;
       },
     );
