@@ -289,7 +289,7 @@ export const configs = {
   },
 
   completeMainMission: () => {
-    const isDisabled = true;
+    let isDisabled = true;
     const missionIndex = player.completedMissions.length;
     const missionName = mayorDialogues[missionIndex][0];
     const reward = mayorDialogues[missionIndex][3];
