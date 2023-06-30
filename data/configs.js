@@ -36,12 +36,9 @@ const defaultGame = {
   unequipTitles: ['Био-меч'],
   player
 };
-<<<<<<< HEAD
-=======
 
 // Хранилище данных конкретной игры
 export let game;
->>>>>>> refs/remotes/origin/main
 
 export const updatePromptsStack = (prompt) => {
   if (prompt) game.promptsStack.push(prompt);
